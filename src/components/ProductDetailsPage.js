@@ -8,11 +8,14 @@ import {ProductContext, Productprovider} from '../components/context';
 import { LOAD_PRODUCT } from '../GraphQL/Queries';
 import { useQuery } from '@apollo/client';
 import { useParams } from "react-router-dom";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'
 
 export default function ProductDetailsPage(props) {
     const [product, setProduct] = useState([]);
     const [color,setColor] = useState("");
     const [size,setSize] = useState("");
+    const [index,setIndex] = useState(0)
    // const {dispatch} = useContext(ProductContext)
     // const {products}=useContext(ProductContext);
 
@@ -38,30 +41,43 @@ export default function ProductDetailsPage(props) {
     
     // const {productdetails} = product;
     // console.log(productdetails)
+    const handleImage =(index)=>{
+        setIndex({index:index})
+    }
 
     return (
             <div>
                 {/* <Productprovider> */}
             <Header></Header>
             {/* {products && products.map(items=>( */}
-            <div className='tw-flex tw-flex-row tw-p-5'>
-                <div className="tw-flex tw-flex-col">
-                    {product.images && product.images.map(item=>(
-                        <>
-                        <div className="tw-grid tw-grid-cols-2 tw-space-x-3">
-
-                            <div>
+            <div className='tw-flex tw-flex-row tw-p-5 xs:tw-space-x-5 md:tw-space-x-20'>
+                <div className="tw-flex tw-flex-col tw-space-y-5">
+                 {product.images && product.images.map(item=>(
+                        <>    
+                            {/* <div>
                             {item.is_default === true && 
                             <img src={'http://182.160.118.196:82/'+item.image} alt={item.image} className="tw-h-52 tw-w-52"></img>}
                             </div>
 
-                            <div>
-                            {item.is_default === false && 
-                            <img src={'http://182.160.118.196:82/'+item.image} alt={item.image} className="tw-h-14 tw-w-14"></img>}
-                            </div>
-                        </div>
-                        </>
+                           <div className="tw-flex">
+                             <img src={'http://182.160.118.196:82/'+item.image} alt={item.image} onClick={()=>handleImage} className="tw-space-y-2 tw-flex tw-h-32 tw-w-32"></img>
+                            </div> */}
+                      <div>
+                      {item.is_default === true && 
+                            <img src={'http://182.160.118.196:82/'+item.image} alt={item.image} className="md:tw-h-60 md:tw-w-80 xs:tw-h-32 xs:tw-w-32"></img>}
+                      </div>
+
+                      </>
                     ))}
+                    <div className="tw-flex tw-space-x-2">
+                        {product.images && product.images.map((item, index)=>(
+                            <>
+                                <img src={'http://182.160.118.196:82/' + item.image} key={index} alt={item.image} onClick={() => handleImage} className="md:tw-h-20 md:tw-w-20 xs:tw-h-12 tw-cursor-pointer"></img>
+                                {/* <img src="./imagesstatic/image-removebg-preview (3).png"></img> */}
+                            </>
+                        ))}
+                    </div>
+
                     {/* <img src={items.images} alt={items.title} className="md:tw-w-96 md:tw-h-96 xs:tw-w-32 xs:tw-h-32"></img> */}
                     <div className="tw-flex md:tw-flex-row xs:tw-flex-col tw-mt-10 tw-justify-between">
                         <div className="tw-flex tw-flex-row">
@@ -84,7 +100,7 @@ export default function ProductDetailsPage(props) {
                         <SiWhatsapp size={20} className="tw-text-green-500"></SiWhatsapp>
                         <SiMessenger size={20} className="tw-text-green-500"></SiMessenger>
                     </div>
-                    <div className="tw-flex tw-flex-row tw-mt-10 tw-gap-x-4">
+                    <div className="tw-flex tw-flex-row tw-mt-10 tw-gap-x-4 tw-w-full">
                         <button className="tw-border-2 tw-bg-green-500 tw-rounded tw-border-green-500 focus:tw-outline-none md:tw-px-3 md:tw-py-1 tw-w-1/2  md:tw-text-xl xs:tw-text-ex tw-font-extrabold">Buy Now</button>
                          <button onClick={shoppingCart} className="tw-border-2 tw-bg-green-200 tw-rounded tw-border-green-500 focus:tw-outline-none md:tw-px-3 tw-py-1 md:tw-text-xl xs:tw-text-ex tw-font-extrabold">
                              Add To Cart
@@ -99,20 +115,26 @@ export default function ProductDetailsPage(props) {
                         {product.description}
                         </p>
                     <div className="tw-flex tw-flex-row tw-pt-14">
-                        <h2 className="md:tw-text-2xl xs:tw-text-sm tw-text-black-50 tw-font-semibold">Colour</h2>
-                        <p className="tw-ml-8 tw-px-1 md:tw-text-2xl xs:tw-text-sm tw-border-2 tw-rounded tw-border-green-500 tw-text-green-500 tw-font-semibold">
-                            {product.colors && product.colors.map(item=>(
-                                <button onClick={()=>setColor(item.color)}>{item.color}</button>
+                        <h2 className="md:tw-text-2xl xs:tw-text-sm tw-text-black-50 tw-font-semibold">Color:</h2>
+                        <div>
+                        {product.colors && product.colors.map(item=>(
+                            <Tippy content={item.color}>
+                                <input value={item.color} type="radio" name="radioColor" className="tw-w-6 tw-h-6 tw-mt-1 tw-ml-3" onChange={e=>setColor(e.target.value)}> 
+                                </input> 
+                                </Tippy>
                             ))}
-                        </p>
+                        </div>
+
+                        
                     </div>
                     <div className="tw-flex tw-flex-row tw-pt-4">
-                        <h2 className="md:tw-text-2xl xs:tw-text-sm tw-text-black-50 tw-font-semibold">Size</h2>
-                        <p className="md:tw-ml-16 xs:tw-ml-8 tw-px-1 md:tw-text-2xl xs:tw-text-sm tw-border-2 tw-rounded tw-border-green-500 tw-text-green-500 tw-font-semibold">
+                        <h2 className="md:tw-text-2xl xs:tw-text-sm tw-text-black-50 tw-font-semibold">Size:</h2>                       
                             {product.sizes && product.sizes.map(item=>(
-                                <button onClick={()=>setSize(item.size)}>{item.size}</button>
+                                <Tippy content={item.size}>
+                                    <input value={item.size} type="radio" name="radioSize" className="tw-w-6 tw-h-6 tw-mt-1 tw-ml-3" onChange={e=>setSize(e.target.value)}>
+                                    </input>
+                                </Tippy>
                             ))}
-                        </p>
                     </div>
                     <div className="tw-flex tw-flex-row tw-pt-4">
                         <h2 className="md:tw-text-2xl xs:tw-text-sm tw-text-black-50 tw-font-semibold">Quantity</h2>

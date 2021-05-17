@@ -52,7 +52,7 @@ export default function Category() {
                                 {product.images && product.images.map((item,key)=>(
                                 item.is_default === true &&                                
                                  <Link  to={`/product/${ product.slug }`}>
-                                  <img src={'http://182.160.118.196:82/'+item.image} alt={item.image} className="h-32 w-32"></img>
+                                  <img src={'http://182.160.118.196:82/'+item.image} alt={item.image} className="tw-h-40 tw-w-40"></img>
                                   </Link>                                                                                           
                                  ))}
                                 

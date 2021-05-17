@@ -16,15 +16,47 @@ function App() {
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   }
-  const product=JSON.parse(localStorage.getItem('products'));
+  //const product=JSON.parse(localStorage.getItem('products'));
+  const images = [
+    "./imagesstatic/001.jpg",
+    "./imagesstatic/002.jpg",
+    "./imagesstatic/001.jpg"
+  ]
+  const slider=()=>{
+    let sliderImage = document.getElementById("slideImg")
+    let len = images.length;
+    let i=0
+    if(i>len-1){
+      i=0;
+    }
+    sliderImage.src = images[i];
+    i++;
+    setTimeout('slider()',3000);
+  }
   return (
-    <div>
+    <div onLoad={()=>slider()}>
       {/* Start header Section */}
         <Header></Header>
         {/* End Header Section */}
 
         {/* start banner slider section */}
-        <div className="tw-flex tw-flex-row">
+        <div className="banner_slide">
+          <div className="slider_image">
+            <img src="./imagesstatic/001.jpg" id="slideImg"></img>
+          </div>
+          <div className="overlay">
+            <div className="content_slide tw-space-y-20">
+              <h1 className="tw-text-lg tw-font-head tw-tracking-widest">GET YOUR WARDROBE READY FOR</h1>
+              <div className="tw-rounded tw-border-8 tw-border-green-600 tw-m-32">
+                <p className="tw-text-9xl tw-font-head tw-p-2 tw-font-bold">SUMMER</p>
+                {/* <span className="tw-text-4xl tw-font-head tw-font-bold">Savings</span> */}
+              </div>
+              
+            </div>
+            <button type="button" className="slide_button">Shop Now</button>
+          </div>
+        </div>
+        {/* <div className="tw-flex tw-flex-row">
           <Carousel>
             <Carousel.Item>
               <img src="./imagesstatic/001.jpg" className="xs:tw-w-auto xs:tw-h-auto sm:tw-w-auto sm:tw-h-auto lg:tw-w-screen lg:tw-h-96 xl:tw-h-screen"></img>
@@ -45,7 +77,7 @@ function App() {
               </Carousel.Caption>
             </Carousel.Item>
           </Carousel>
-        </div>
+        </div> */}
 
         <div className="tw-flex tw-flex-row tw-mt-10 tw-px-5">
           <div className="tw-bg-green-500 tw-h-1 tw-w-1/2 tw-mt-3"></div>

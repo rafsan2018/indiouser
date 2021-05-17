@@ -4,7 +4,7 @@ import Footer from '../components/footer';
 import StartRating from "../components/startRating";
 import {FcLike} from 'react-icons/fc';
 import {SiFacebook,SiInstagram,SiWhatsapp,SiMessenger} from 'react-icons/si';
-import {ProductContext, Productprovider} from '../components/context';
+import {useDispatchCart, Productprovider} from '../components/context';
 import { LOAD_PRODUCT } from '../GraphQL/Queries';
 import { useQuery } from '@apollo/client';
 import { useParams } from "react-router-dom";
@@ -35,8 +35,12 @@ export default function ProductDetailsPage(props) {
 
     console.log(product);
 
-    const shoppingCart =()=>{
+    const dispatch= useDispatchCart();
+
+    const shoppingCart =(item)=>{
         //dispatch({type:'LOGIN',payload:res.data})
+        dispatch({type:"ADD_ITEMS",id:item.id})
+        console.log(item);
     }
     
     // const {productdetails} = product;
@@ -102,7 +106,7 @@ export default function ProductDetailsPage(props) {
                     </div>
                     <div className="tw-flex tw-flex-row tw-mt-10 tw-gap-x-4 tw-w-full">
                         <button className="tw-border-2 tw-bg-green-500 tw-rounded tw-border-green-500 focus:tw-outline-none md:tw-px-3 md:tw-py-1 tw-w-1/2  md:tw-text-xl xs:tw-text-ex tw-font-extrabold">Buy Now</button>
-                         <button onClick={shoppingCart} className="tw-border-2 tw-bg-green-200 tw-rounded tw-border-green-500 focus:tw-outline-none md:tw-px-3 tw-py-1 md:tw-text-xl xs:tw-text-ex tw-font-extrabold">
+                         <button onClick={()=>shoppingCart(product)} className="tw-border-2 tw-bg-green-200 tw-rounded tw-border-green-500 focus:tw-outline-none md:tw-px-3 tw-py-1 md:tw-text-xl xs:tw-text-ex tw-font-extrabold">
                              Add To Cart
                              </button>
                     </div>

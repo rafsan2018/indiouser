@@ -7,7 +7,7 @@ import AboutUs from '../src/components/about-us';
 import FaQ from '../src/components/faq';
 import {Productprovider} from '../src/components/context';
 import {AuthProvider} from '../src/Context/userContext';
-import ProductsList from '../src/components/ProductsList';
+// import ProductsList from '../src/components/ProductsList';
 import ProductDetailsPage from '../src/components/ProductDetailsPage';
 import Cart from '../src/components/Cart';
 import CheckOut from '../src/components/checkout';
@@ -49,7 +49,7 @@ ReactDOM.render(
             <Route path="/faq" exact component={FaQ}></Route>
             {/* <Route path="/products" exact component={Products}></Route> */}
             {/* <Productprovider> */}
-            <Route path="/products" exact component={ProductsList}></Route>
+            {/* <Route path="/products" exact component={ProductsList}></Route> */}
             <Route path="/category/:slug" exact component={Category}></Route>
             <Route path="/product/:slug" exact component={ProductDetailsPage}></Route>
             <Route path="/cart" exact component={Cart}></Route> 

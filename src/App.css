@@ -14,3 +14,88 @@
   transition: all 0.5s cubic-bezier(0, 1, 0, 1);
 }
 
+.banner_slide{
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+.slider_image{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+}
+#slideImg{
+  width: 100%;
+  height: 100%;
+}
+.overlay{
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7));
+  position: absolute;
+  top: 0;
+}
+.content_slide{
+  width: 60%;
+  margin: 160px auto 0;
+  text-align: center;
+  color: #fff;
+}
+.box{
+  width: 350px;
+  padding: 10px;
+}
+
+/*begin first box*/
+.first{
+  width: 300px;
+  height: 100px;
+  margin: 10px;
+  border-width: 0 2px 0 2px;
+  border-color: rgb(12, 185, 55);
+  border-style: solid;
+  position: relative;
+}
+
+.first span {
+  position: absolute;
+  display: flex;
+  right: 0;
+  left: 0;
+  align-items: center;
+}
+.first .foo{
+  top: -8px;
+}
+.first .bar{
+  bottom: -8.5px;
+}
+.first span:before{
+  margin-right: 15px;
+}
+.first span:after {
+  margin-left: 15px;
+}
+.first span:before , .first span:after {
+  content: ' ';
+  height: 2px;
+  background: rgb(66, 224, 145);
+  display: block;
+  width: 50%;
+}
+.slide_button{
+  position: absolute;
+  
+  margin-top: 100px;
+  right: 250px;
+  width: 200px;
+  padding: 15px 0;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
+  background: green;
+  color: #fff;
+  cursor: pointer;
+}

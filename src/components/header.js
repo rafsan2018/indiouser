@@ -6,7 +6,7 @@ import {CgMail} from "react-icons/cg";
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {useHistory, Link} from 'react-router-dom';
 import {useDetectOutsideClick, useDetectOutsideClick2,useDetectOutsideClick3} from './useDetectOutsideClick';
-import {ProductContext} from './context';
+import {useCart} from './context';
 import {AuthContext} from '../Context/userContext';
 import axios from 'axios';
 import '../App.css';
@@ -41,7 +41,7 @@ export default function Header() {
       }
   },[data])
 
-  const {cart}=useContext(ProductContext);
+  const cart=useCart();
 
   const [isDrawer, setIsDrawer] = React.useState(false)
   const toggleDrawer = () => {
@@ -214,7 +214,8 @@ export default function Header() {
               <div className="">
                 <a href="#" className="tw-absolute xs:tw--mt-8 md:tw--mt-4 tw-text-white">
                   <Link to="/cart">
-                    <span className={cart.length > 0 ? "tw-visible" : "tw-invisible"}>{cart.length}</span>
+                    <span className={cart.length > 0 ? "tw-visible" : "tw-invisible"}>{cart.length}</span>   
+                    {/* className={cart.length > 0 ? "tw-visible" : "tw-invisible"} */}
                     <RiShoppingBasketFill size={30} className="" />
                   </Link>
                 </a>

@@ -6,19 +6,22 @@ import reportWebVitals from './reportWebVitals';
 import AboutUs from '../src/components/about-us';
 import FaQ from '../src/components/faq';
 import {Productprovider} from '../src/components/context';
+import CartContextProvider from '../src/Context/CartContext';
 import {AuthProvider} from '../src/Context/userContext';
 // import ProductsList from '../src/components/ProductsList';
 import ProductDetailsPage from '../src/components/ProductDetailsPage';
 import Cart from '../src/components/Cart';
 import CheckOut from '../src/components/checkout';
 import Login from '../src/components/login';
+import SignUp from '../src/components/signup';
 import PlaceOrder from '../src/components/PlaceOrder';
 import OrderComplete from '../src/components/OrderComplete';
 import Category from '../src/components/category';
 import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import {ApolloClient,InMemoryCache,HttpLink,from,ApolloProvider} from '@apollo/client';
 import {onError} from '@apollo/client/link/error';
-import {createUploadLink} from 'apollo-upload-client'
+import {createUploadLink} from 'apollo-upload-client';
+import SnackbarProvider from 'react-simple-snackbar';
 
 
 const link = from([
@@ -39,9 +42,10 @@ ReactDOM.render(
   <React.StrictMode>
     {/* <App /> */}
     <ApolloProvider client={client}>
-      
+      <CartContextProvider>
     <Productprovider>
       <AuthProvider>
+        <SnackbarProvider>
     <Router>
           <Switch>
             <Route path="/" exact component={App}></Route>
@@ -56,12 +60,15 @@ ReactDOM.render(
             {/* </Productprovider> */}
             <Route path="/checkout" exact component={CheckOut}></Route>
             <Route path="/login" exact component={Login}></Route>
+            <Route path="/signup" exact component={SignUp}></Route>
             <Route path="/placeorder" exact component={PlaceOrder}></Route>
             <Route path="/completeorder" exact component={OrderComplete}></Route>
           </Switch>
       </Router>
+      </SnackbarProvider>
       </AuthProvider>
       </Productprovider>
+      </CartContextProvider>
       </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')

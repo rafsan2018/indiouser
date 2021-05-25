@@ -62,6 +62,10 @@ query($slug: String!){
                 image
                 is_default
             }
+            sizes{
+                id
+                size
+            }
         }
     }
 }

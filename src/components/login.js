@@ -2,7 +2,23 @@ import React, {useState,useContext} from 'react'
 import {Link,useHistory} from 'react-router-dom';
 import axios from 'axios';
 import {AuthContext} from '../Context/userContext';
-import {loginUser,logout} from '../Actions/userActions'
+import {loginUser,logout} from '../Actions/userActions';
+import { useSnackbar } from 'react-simple-snackbar';
+
+const options = {
+    position: 'bottom-center',
+    style: {
+        backgroundColor: '#1e6f5c',
+        color: '#ffffff',
+        fontFamily: 'sans-serif',
+        fontSize: '16px',
+        textAlign: 'left',
+    },
+    closeStyle: {
+        color: '#ffffff',
+        fontSize: '12px',
+    },
+};
 
 export default function Login(props) {
 
@@ -19,16 +35,9 @@ export default function Login(props) {
     const submitHandler=(e)=>{
         e.preventDefault()
     }
-
+   
+    const [openSnackbar, closeSnackbar] = useSnackbar(options);
     const onSubmitform=async(e)=>{
-        // const payload={email,password}
-        // try {
-        //     let response = await loginUser(dispatch, payload) //loginUser action makes the request and handles all the neccessary state changes
-        //     if (!response.user) return
-        //     props.history.push('/checkout') //navigate to dashboard on success
-        // } catch (error) {
-        //     console.log(error)
-        // }
         const submit={
             email:email,
             password:password
@@ -39,12 +48,14 @@ export default function Login(props) {
           }
         axios.post('https://kaderecommerceapi.herokuapp.com/api/user/login',submit,{headers:headers})
              .then(res=>{
-                 //console.log(res.data.user)
+                 if(email===null && password===null){
+                   return openSnackbar('Please Insert Email and password');
+                 }else{
                  setToken(res.data.token)
                  dispatch({type:'LOGIN',payload:res.data})
-                 //console.log(dispatch);
-                //  localStorage.setItem("user",token)
-                 props.history.push('/checkout')
+                 props.history.push('/')
+                 return openSnackbar("Login Success")
+                 }
              })
     }
 
@@ -94,7 +105,7 @@ export default function Login(props) {
                                     <label className="tw-ml-2 tw-text-sm tw-text-gray-600">If You Are New User</label>
                                 </div>
                                 <div>
-                                    <a className="tw-font-medium tw-text-gray-600">Sign Up</a>
+                                    <Link to="/signup" className="tw-font-medium tw-text-gray-600">Sign Up</Link>
                                 </div>
                             </div>
                             <div>

@@ -12,12 +12,7 @@ const CartDispatchContext = createContext();
 const reducer = (state, action) => {
     switch (action.type) {
       case "ADD_ITEMS":
-        const check = action.item.find(p=>p.id===action.id);
-        if(check){
-          return state
-        }else{
           return [...state, action.item]
-        }
         // return [...state, action.item];
       case "REMOVE":
         const newArr = [...state];

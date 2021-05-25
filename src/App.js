@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import { AiOutlinePrinter } from 'react-icons/ai';
 import Footer from '../src/components/footer';
@@ -10,7 +10,7 @@ import './App.css'
 
 function App() {
   
-  const [index, setIndex] = useState(0);
+  const [initialIndex, setIndex] = useState(0);
   const [value, setValue]=useState("");
 
   const handleSelect = (selectedIndex, e) => {
@@ -20,64 +20,48 @@ function App() {
   const images = [
     "./imagesstatic/001.jpg",
     "./imagesstatic/002.jpg",
-    "./imagesstatic/001.jpg"
+    "./imagesstatic/003.jpg"
   ]
-  const slider=()=>{
-    let sliderImage = document.getElementById("slideImg")
-    let len = images.length;
-    let i=0
-    if(i>len-1){
-      i=0;
+
+  useEffect(()=>{
+    if (initialIndex < images.length) {
+      let i = initialIndex;
+      let sliderImage = document.getElementById("slideImg");
+      setTimeout(() => {
+        sliderImage.src = images[i];
+        setIndex(++i);
+      }, 3000);
+    } else {
+      setIndex(0);
     }
-    sliderImage.src = images[i];
-    i++;
-    setTimeout('slider()',3000);
-  }
+  },[initialIndex]);
+  
   return (
-    <div onLoad={()=>slider()}>
+    <div className="">
       {/* Start header Section */}
         <Header></Header>
         {/* End Header Section */}
+        <div className="">
 
+        
         {/* start banner slider section */}
         <div className="banner_slide">
           <div className="slider_image">
             <img src="./imagesstatic/001.jpg" id="slideImg"></img>
           </div>
           <div className="overlay">
-            <div className="content_slide tw-space-y-20">
+            <div className="content_slide md:tw-space-y-20 xs:tw-space-y-5">
               <h1 className="tw-text-lg tw-font-head tw-tracking-widest">GET YOUR WARDROBE READY FOR</h1>
-              <div className="tw-rounded tw-border-8 tw-border-green-600 tw-m-32">
-                <p className="tw-text-9xl tw-font-head tw-p-2 tw-font-bold">SUMMER</p>
-                {/* <span className="tw-text-4xl tw-font-head tw-font-bold">Savings</span> */}
-              </div>
-              
+              <div className="tw-rounded md:tw-border-8 xs:tw-border-4 tw-border-green-600 xl:tw-m-32 xs:tw-m-5">
+                <p className="lg:tw-text-7xl 2xl:tw-text-9xl xs:tw-text-xl tw-font-head tw-p-2 tw-font-bold tw-tracking-widest">SUMMER</p>
+                <span className="lg:tw-text-6xl xs:tw-text-xl tw-font-head tw-font-bold tw-tracking-widest">SAVINGS</span>
+              </div>             
             </div>
-            <button type="button" className="slide_button">Shop Now</button>
+            <button type="button" className="slide_button tw-tracking-widest">SHOP NOW</button>
           </div>
         </div>
-        {/* <div className="tw-flex tw-flex-row">
-          <Carousel>
-            <Carousel.Item>
-              <img src="./imagesstatic/001.jpg" className="xs:tw-w-auto xs:tw-h-auto sm:tw-w-auto sm:tw-h-auto lg:tw-w-screen lg:tw-h-96 xl:tw-h-screen"></img>
-              <Carousel.Caption>
-                <h1>Hello Boss</h1>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img src="./imagesstatic/002.jpg" className="xs:tw-w-auto xs:tw-h-auto sm:tw-w-auto sm:tw-h-auto lg:tw-w-screen lg:tw-h-96 xl:tw-h-screen"></img>
-              <Carousel.Caption>
-                <h1>Hello Boss</h1>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img src="./imagesstatic/003.jpg" className="xs:tw-w-auto xs:tw-h-auto sm:tw-w-auto sm:tw-h-auto lg:tw-w-screen lg:tw-h-96 xl:tw-h-screen"></img>
-              <Carousel.Caption>
-                <h1>Hello Boss</h1>
-              </Carousel.Caption>
-            </Carousel.Item>
-          </Carousel>
-        </div> */}
+
+        {/* start featured products */}
 
         <div className="tw-flex tw-flex-row tw-mt-10 tw-px-5">
           <div className="tw-bg-green-500 tw-h-1 tw-w-1/2 tw-mt-3"></div>
@@ -86,122 +70,119 @@ function App() {
         </div>
 
         <div className="tw-flex tw-flex-row tw-px-5">
-          <div className="tw-h-auto tw-bg-green-500 tw--mt-6 sm:tw--mt-2 lg:tw--mt-16 xl:tw--mt-7 tw--mb-3 tw-w-1"></div>
-
+          <div className="sm:tw-invisible xs:tw-visible 2xl:tw-visible tw-h-auto tw-bg-green-500 tw--mt-6 sm:tw--mt-2 lg:tw--mt-16 xl:tw--mt-7 tw--mb-3 tw-w-1"></div>
+         {/* start products put in section */}
           <div className="tw-flex tw-flex-col">
 
-          
-          <div className="tw-grid xs:tw-grid-cols-2 tablet:tw-grid-cols-2 lg:tw-grid-cols-4 sm:tw-grid-cols-4 sm:tw-gap-x-20 md:tw-gap-x-10 2xl:tw-gap-x-52 xl:tw-gap-x-32 lg:tw-gap-x-5 tw-mt-5">
+              <div className="tw-grid xl:tw-grid-cols-4 md:tw-grid-cols-3 xs:tw-grid-cols-2 tw-gap-y-5 tw-right-0 md:tw-gap-x-20 xl:tw-gap-x-20 xs:tw-gap-x-5 xl:tw-ml-20 xl:tw-mr-0 xs:tw--mr-28">
 
-            <div className="">
-            <img src="./imagesstatic/image-removebg-preview (3).png" className="tw-display-block tw-w-36 tw-h-32 md:tw-h-52 sm:tw-w-72 sm:tw-h-72"/>
-            <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Keep Claim</h1>
-            <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
-            <div className="tw-grid tw-grid-cols-4 tw-mt-3 tw-font-semibold xl:tw-px-14 2xl:tw-px-24 md:tw-px-10 lg:tw-px-10 tw-px-5 tw-transform tw-scale-100 sm:tw-scale-150">
-            <input type="radio" name="gender" value="male" className=""/>
-            <input type="radio" name="gender" value="male"/>
-            <input type="radio" name="gender" value="male"/>
-            <input type="radio" name="gender" value="male"/>
-            </div>
-            </div>
+              <div className="tw-rounded-lg tw-shadow-md tw-border-gray-100 tw-border-2 tw-py-2 hover:tw-opacity-75 tw-cursor-pointer tw-object-cover">
+                <img src="./imagesstatic/image-removebg-preview (3).png" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold tw-mt-5">Keep Claim</h1>
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+                <div className="tw-grid tw-grid-cols-4 tw-mt-3 tw-font-semibold sm:tw-px-24 lg:tw-px-28 xl:tw-px-14 2xl:tw-px-24 md:tw-px-28  lg:tw-px-10 tw-px-5 tw-transform tw-scale-100 sm:tw-scale-150">
+                  <input type="radio" name="gender" value="male" className="" />
+                  <input type="radio" name="gender" value="male" />
+                  <input type="radio" name="gender" value="male" />
+                  <input type="radio" name="gender" value="male" />
+                </div>
+              </div>
 
-            <div className="">
-            <img src="./imagesstatic/kids-parkour-urban-t-shirt-black-yellow-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 md:tw-h-52 sm:tw-w-72 sm:tw-h-72"/>
-            <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
-            <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
-            <div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 lg:tw-px-10 xl:tw-px-14 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
-            <input type="radio" name="gender" value="male" className=""/>
-            <input type="radio" name="gender" value="male"/>
-            <input type="radio" name="gender" value="male"/>
-            <input type="radio" name="gender" value="male"/>
-            </div>
-            </div>
+              <div className="tw-rounded-lg tw-shadow-md tw-border-gray-100 tw-border-2 tw-py-2 hover:tw-opacity-75 tw-cursor-pointer">
+                <img src="./imagesstatic/kids-parkour-urban-t-shirt-black-yellow-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+                <div className="tw-grid tw-grid-cols-4 tw-mt-3 tw-font-semibold sm:tw-px-24 lg:tw-px-28 xl:tw-px-14 2xl:tw-px-24 md:tw-px-28  lg:tw-px-10 tw-px-5 tw-transform tw-scale-100 sm:tw-scale-150">
+                  <input type="radio" name="gender" value="male" className="" />
+                  <input type="radio" name="gender" value="male" />
+                  <input type="radio" name="gender" value="male" />
+                  <input type="radio" name="gender" value="male" />
+                </div>
+              </div>
 
-            <div className="">
-            <img src="./imagesstatic/kids-transformers-black-t-shirt-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 md:tw-h-52 sm:tw-w-72 sm:tw-h-72"/>
-            <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
-            <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
-            <div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 lg:tw-px-10 xl:tw-px-14 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
-            <input type="radio" name="gender" value="male" className=""/>
-            <input type="radio" name="gender" value="male"/>
-            <input type="radio" name="gender" value="male"/>
-            <input type="radio" name="gender" value="male"/>
-            </div>
-            </div>
+              <div className="tw-rounded-lg tw-shadow-md tw-border-gray-100 tw-border-2 tw-py-2 hover:tw-opacity-75 tw-cursor-pointer">
+                <img src="./imagesstatic/kids-transformers-black-t-shirt-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+                <div className="tw-grid tw-grid-cols-4 tw-mt-3 tw-font-semibold sm:tw-px-24 lg:tw-px-28 xl:tw-px-14 2xl:tw-px-24 md:tw-px-28  lg:tw-px-10 tw-px-5 tw-transform tw-scale-100 sm:tw-scale-150">
+                  <input type="radio" name="gender" value="male" className="" />
+                  <input type="radio" name="gender" value="male" />
+                  <input type="radio" name="gender" value="male" />
+                  <input type="radio" name="gender" value="male" />
+                </div>
+              </div>
 
-            <div className="">
-            <img src="./imagesstatic/kids_letters-black_with_yellow_print-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 md:tw-h-52 sm:tw-w-72 sm:tw-h-72"/>
-            <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
-            <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
-            <div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 lg:tw-px-10 xl:tw-px-14 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
-            <input type="radio" name="gender" value="male" className=""/>
-            <input type="radio" name="gender" value="male"/>
-            <input type="radio" name="gender" value="male"/>
-            <input type="radio" name="gender" value="male"/>
-            </div>
-            </div>
+              <div className="tw-rounded-lg tw-shadow-md tw-border-gray-100 tw-border-2 tw-py-2 hover:tw-opacity-75 tw-cursor-pointer">
+                <img src="./imagesstatic/kids-transformers-black-t-shirt-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+                <div className="tw-grid tw-grid-cols-4 tw-mt-3 tw-font-semibold sm:tw-px-24 lg:tw-px-28 xl:tw-px-14 2xl:tw-px-24 md:tw-px-28  lg:tw-px-10 tw-px-5 tw-transform tw-scale-100 sm:tw-scale-150">
+                  <input type="radio" name="gender" value="male" className="" />
+                  <input type="radio" name="gender" value="male" />
+                  <input type="radio" name="gender" value="male" />
+                  <input type="radio" name="gender" value="male" />
+                </div>
+              </div>
+
+              <div className="tw-rounded-lg tw-shadow-md tw-border-gray-100 tw-border-2 tw-py-2 hover:tw-opacity-75 tw-cursor-pointer">
+                <img src="./imagesstatic/indigo2.jpeg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+                <div className="tw-grid tw-grid-cols-4 tw-mt-3 tw-font-semibold sm:tw-px-24 lg:tw-px-28 xl:tw-px-14 2xl:tw-px-24 md:tw-px-28  lg:tw-px-10 tw-px-5 tw-transform tw-scale-100 sm:tw-scale-150">
+                  <input type="radio" name="gender" value="male" className="" />
+                  <input type="radio" name="gender" value="male" />
+                  <input type="radio" name="gender" value="male" />
+                  <input type="radio" name="gender" value="male" />
+                </div>
+              </div>
+
+              <div className="tw-rounded-lg tw-shadow-md tw-border-gray-100 tw-border-2 tw-py-2 hover:tw-opacity-75 tw-cursor-pointer">
+                <img src="./imagesstatic/kids_letters-black_with_yellow_print-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+                <div className="tw-grid tw-grid-cols-4 tw-mt-3 tw-font-semibold sm:tw-px-24 lg:tw-px-28 xl:tw-px-14 2xl:tw-px-24 md:tw-px-28  lg:tw-px-10 tw-px-5 tw-transform tw-scale-100 sm:tw-scale-150">
+                  <input type="radio" name="gender" value="male" className="" />
+                  <input type="radio" name="gender" value="male" />
+                  <input type="radio" name="gender" value="male" />
+                  <input type="radio" name="gender" value="male" />
+                </div>
+              </div>
+
+              <div className="tw-rounded-lg tw-shadow-md tw-border-gray-100 tw-border-2 tw-py-2 hover:tw-opacity-75 tw-cursor-pointer">
+                <img src="./imagesstatic/image-removebg-preview (3).png" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+                <div className="tw-grid tw-grid-cols-4 tw-mt-3 tw-font-semibold sm:tw-px-24 lg:tw-px-28 xl:tw-px-14 2xl:tw-px-24 md:tw-px-28  lg:tw-px-10 tw-px-5 tw-transform tw-scale-100 sm:tw-scale-150">
+                  <input type="radio" name="gender" value="male" className="" />
+                  <input type="radio" name="gender" value="male" />
+                  <input type="radio" name="gender" value="male" />
+                  <input type="radio" name="gender" value="male" />
+                </div>
+              </div>
+
+              <div className="tw-rounded-lg tw-shadow-md tw-border-gray-100 tw-border-2 tw-py-2 hover:tw-opacity-75 tw-cursor-pointer">
+                <img src="./imagesstatic/kids-parkour-urban-t-shirt-black-yellow-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+                <div className="tw-grid tw-grid-cols-4 tw-mt-3 tw-font-semibold sm:tw-px-24 lg:tw-px-28 xl:tw-px-14 2xl:tw-px-24 md:tw-px-28  lg:tw-px-10 tw-px-5 tw-transform tw-scale-100 sm:tw-scale-150">
+                  <input type="radio" name="gender" value="male" className="" />
+                  <input type="radio" name="gender" value="male" />
+                  <input type="radio" name="gender" value="male" />
+                  <input type="radio" name="gender" value="male" />
+                </div>
+              </div>
+
+              </div>
 
           </div>
-
-          <div className="tw-grid tw-grid-cols-2 sm:tw-grid-cols-4 tw-gap-x-20 tw-px-2 tw-mt-5 md:tw-gap-x-10 xl:tw-gap-x-32 2xl:tw-gap-x-52">
-
-            <div className="">
-            <img src="./imagesstatic/image-removebg-preview (3).png" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72"/>
-            <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
-            <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
-            <div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 lg:tw-px-10 xl:tw-px-14 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
-            <input type="radio" name="gender" value="male" className=""/>
-            <input type="radio" name="gender" value="male"/>
-            <input type="radio" name="gender" value="male"/>
-            <input type="radio" name="gender" value="male"/>
-            </div>
-            </div>
-
-            <div className="">
-            <img src="./imagesstatic/kids-parkour-urban-t-shirt-black-yellow-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72"/>
-            <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
-            <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
-            <div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 lg:tw-px-10 xl:tw-px-14 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
-            <input type="radio" name="gender" value="male" className=""/>
-            <input type="radio" name="gender" value="male"/>
-            <input type="radio" name="gender" value="male"/>
-            <input type="radio" name="gender" value="male"/>
-            </div>
-            </div>
-
-            <div className="">
-            <img src="./imagesstatic/kids-transformers-black-t-shirt-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72"/>
-            <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
-            <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
-            <div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 xl:tw-px-14 lg:tw-px-10 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
-            <input type="radio" name="gender" value="male" className=""/>
-            <input type="radio" name="gender" value="male"/>
-            <input type="radio" name="gender" value="male"/>
-            <input type="radio" name="gender" value="male"/>
-            </div>
-            </div>
-
-            <div className="">
-            <img src="./imagesstatic/indigo2.jpeg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72"/>
-            <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
-            <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
-            <div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 lg:tw-px-10 xl:tw-px-14 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
-            <input type="radio" name="gender" value="male" className=""/>
-            <input type="radio" name="gender" value="male"/>
-            <input type="radio" name="gender" value="male"/>
-            <input type="radio" name="gender" value="male"/>
-            </div>
-            </div>
-
-            </div>
-          </div>
-
-          <div className="tw-h-auto tw-bg-green-500 md:tw-ml-16 tw--mt-6 sm:tw--mt-2 md:tw--mt-6 xl:tw--mt-7 lg:tw--mt-16 tw--mb-3 tw-w-1 md:tw-w-1"></div>
+      {/* end product list */}
+          <div className="sm:tw-invisible xs:tw-visible 2xl:tw-visible tw-h-auto tw-bg-green-500 tw-ml-28 tw--mt-6 sm:tw--mt-2 md:tw--mt-6 xl:tw--mt-7 lg:tw--mt-16 tw--mb-3 tw-w-1 md:tw-w-1"></div>
         </div>
         
         
         <div className="tw-flex tw-flex-row tw-h-1 tw-bg-green-500 tw-mt-2 tw-m-5"></div>
-        
+         {/* end featured products */}
+
          {/* our professional service */}
         <div className="tw-flex tw-flex-row tw-mt-14 tw-px-5">
           <div className="tw-bg-green-500 tw-h-1 tw-w-1/2 tw-mt-3"></div>
@@ -379,8 +360,9 @@ function App() {
           <h1 className="tw-text-center tw-text-white tw-text-xl tw-font-bold">DISCOUNTS, SALES, NEWS, AND MORE - SUBSCRIBE TO OUR NEWSLETTER</h1>
         </div>
         {/* start footer section */}
+        </div>
         <Footer></Footer>
-
+        
     </div>
   );
 }
@@ -388,60 +370,154 @@ function App() {
 export default App;
 
 
+{/* <div className="tw-rounded-lg tw-shadow-md tw-border-gray-600 tw-border-2 tw-py-2">
+<img src="./imagesstatic/image-removebg-preview (3).png" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+<h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+<h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+<div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 lg:tw-px-10 xl:tw-px-14 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
+  <input type="radio" name="gender" value="male" className="" />
+  <input type="radio" name="gender" value="male" />
+  <input type="radio" name="gender" value="male" />
+  <input type="radio" name="gender" value="male" />
+</div>
+</div>
 
-{/* <div className="tw-flex tw-flex-row md:tw-w-full tw-h-full md:tw-flex-row tw-px-5">
-<div className="tw-h-auto tw-bg-green-500 tw--mt-6 md:tw--mt-6 tw--mb-3 tw-w-2"></div>
+<div className="tw-rounded-lg tw-shadow-md tw-border-gray-600 tw-border-2 tw-py-2">
+<img src="./imagesstatic/kids-parkour-urban-t-shirt-black-yellow-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+<h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+<h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+<div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 lg:tw-px-10 xl:tw-px-14 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
+  <input type="radio" name="gender" value="male" className="" />
+  <input type="radio" name="gender" value="male" />
+  <input type="radio" name="gender" value="male" />
+  <input type="radio" name="gender" value="male" />
+</div>
+</div> */}
 
- {/* <div className="tw-grid tw-grid-cols-2"> */}
- 
-  // <div className="tw-flex tw-flex-col tw-mt-5 tw-px-8 md:tw-mt-0 md:tw-px-10 tw-w-full md:tw-h-auto tw-space-y-10">
-  
-    {/* <div className="tw-relative tw-display-block tw-w-full md:tw-h-full md:tw-w-full md:tw-justify-items-end" style={{backgroundImage: "url(" + "./imagesstatic/indigo2.jpeg" + ")",backgroundSize:'cover',overflow:'hidden',backgroundRepeat:'no-repeat'}}> */}
-    {/* style={{backgroundImage: "url(" + "./imagesstatic/indigo2.jpeg" + ")",backgroundSize:'cover',overflow:'hidden',backgroundRepeat:'no-repeat'}} */}
-    {/* <img src="./imagesstatic/indigo2.jpeg" className="tw-display-block tw-w-full tw-h-full"/> */}
-    {/* <div className="tw-absolute tw-bottom-2 tw-right-5 tw-flex-col tw-justify">
-      <h1 className="md:tw-text-2xl tw-text-xs tw-text-white">TSHIRT FOR HIM</h1>
-      <h1 className="tw-ml-16 md:tw-text-xl tw-text-white">COLLECTION</h1>
-      <button className="tw-ml-16 tw-px-4 md:tw-text-sm tw-text-white tw-border-2 tw-border-white">Shop Now &#8811;</button>
+{/* <div className="tw-rounded-lg tw-shadow-md tw-border-gray-600 tw-border-2 tw-py-2">
+<img src="./imagesstatic/kids-transformers-black-t-shirt-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+<h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+<h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+<div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 xl:tw-px-14 lg:tw-px-10 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
+  <input type="radio" name="gender" value="male" className="" />
+  <input type="radio" name="gender" value="male" />
+  <input type="radio" name="gender" value="male" />
+  <input type="radio" name="gender" value="male" />
+</div>
+</div>
+
+<div className="tw-rounded-lg tw-shadow-md tw-border-gray-600 tw-border-2 tw-py-2">
+<img src="./imagesstatic/indigo2.jpeg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+<h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+<h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+<div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 lg:tw-px-10 xl:tw-px-14 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
+  <input type="radio" name="gender" value="male" className="" />
+  <input type="radio" name="gender" value="male" />
+  <input type="radio" name="gender" value="male" />
+  <input type="radio" name="gender" value="male" />
+</div>
+</div> */}
+
+{/* <div className="tw-grid xs:tw-grid-cols-2 tablet:tw-grid-cols-2 lg:tw-grid-cols-4 sm:tw-grid-cols-4 xs:tw-gap-x-10 sm:tw-gap-x-20 md:tw-gap-x-10 2xl:tw-gap-x-52 xl:tw-gap-x-32 lg:tw-gap-x-5 tw-mt-5">
+
+  <div className="">
+    <img src="./imagesstatic/image-removebg-preview (3).png" className="tw-display-block xs:tw-w-full tw-w-36 tw-h-32 md:tw-h-52 sm:tw-w-72 sm:tw-h-72" />
+    <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Keep Claim</h1>
+    <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+    <div className="tw-grid tw-grid-cols-4 tw-mt-3 tw-font-semibold xl:tw-px-14 2xl:tw-px-24 md:tw-px-10 lg:tw-px-10 tw-px-5 tw-transform tw-scale-100 sm:tw-scale-150">
+      <input type="radio" name="gender" value="male" className="" />
+      <input type="radio" name="gender" value="male" />
+      <input type="radio" name="gender" value="male" />
+      <input type="radio" name="gender" value="male" />
     </div>
-  </div> 
+  </div>
 
-  <div className="tw-relative tw-display-block tw-h-52 md:tw-h-full md:tw-w-full md:tw-justify-items-end" style={{backgroundImage: "url(" + "./imagesstatic/indigo2.jpeg" + ")",backgroundSize:'cover',overflow:'hidden',backgroundRepeat:'no-repeat'}}>
-    {/* <img src="./imagesstatic/indigo2.jpeg" className="tw-display-block tw-w-full tw-h-full"/> */}
-    {/* <div className="tw-absolute tw-bottom-2 tw-right-5 tw-flex-col tw-justify">
-      <h1 className="md:tw-text-2xl tw-text-xs tw-text-white">DESIGN SERVICES</h1>
-      <h1 className="tw-ml-16 md:tw-text-xl tw-text-white">COLLECTION</h1>
-      <button className="tw-ml-16 tw-px-4 md:tw-text-sm tw-text-white tw-border-2 tw-bg-green-400">Shop Now &#8811;</button>
+  <div className="">
+    <img src="./imagesstatic/kids-parkour-urban-t-shirt-black-yellow-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 md:tw-h-52 sm:tw-w-72 sm:tw-h-72" />
+    <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+    <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+    <div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 lg:tw-px-10 xl:tw-px-14 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
+      <input type="radio" name="gender" value="male" className="" />
+      <input type="radio" name="gender" value="male" />
+      <input type="radio" name="gender" value="male" />
+      <input type="radio" name="gender" value="male" />
     </div>
-  </div>    
-  </div> */} 
-  {/* </div> */}
+  </div>
 
-  {/* // <div>
-  // <img src="./imagesstatic/indigo2.jpeg" className="tw-display-block tw-invisible md:tw-visible tw-h-36 md:tw-w-full md:tw-h-full"/>
-  // </div>
-  
-//   <div className="tw-flex tw-flex-col md:tw-px-10 tw-w-full tw-h-auto  tw-space-y-10">
-  
-//   <div className="tw-relative tw-display-block md:tw-h-full md:tw-w-full md:tw-justify-items-end" style={{backgroundImage: "url(" + "./imagesstatic/indigo2.jpeg" + ")",backgroundSize:'cover',overflow:'hidden',backgroundRepeat:'no-repeat'}}>
-//     {/* <img src="./imagesstatic/indigo2.jpeg" className="tw-display-block tw-w-full tw-h-full"/> */}
-{/* //     <div className="tw-absolute tw-bottom-2 tw-right-5 tw-flex-col tw-justify">
-//       <h1 className="md:tw-text-2xl tw-text-xs tw-text-white">DESIGN SERVICES</h1>
-//       <h1 className="tw-ml-16 md:tw-text-xl tw-text-white">COLLECTION</h1>
-//       <button className="tw-ml-16 tw-px-4 md:tw-text-sm tw-text-white tw-border-2 tw-bg-green-400">Shop Now &#8811;</button>
-//     </div> 
-//     </div>
+  <div className="">
+    <img src="./imagesstatic/kids-transformers-black-t-shirt-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 md:tw-h-52 sm:tw-w-72 sm:tw-h-72" />
+    <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+    <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+    <div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 lg:tw-px-10 xl:tw-px-14 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
+      <input type="radio" name="gender" value="male" className="" />
+      <input type="radio" name="gender" value="male" />
+      <input type="radio" name="gender" value="male" />
+      <input type="radio" name="gender" value="male" />
+    </div>
+  </div>
 
-//     <div className="tw-relative tw-display-block md:tw-h-full md:tw-w-full md:tw-justify-items-end" style={{backgroundImage: "url(" + "./imagesstatic/indigo2.jpeg" + ")",backgroundSize:'cover',overflow:'hidden',backgroundRepeat:'no-repeat'}}>
-//     {/* <img src="./imagesstatic/indigo2.jpeg" className="tw-display-block tw-w-full tw-h-full"/> */}
-{/* //     <div className="tw-absolute tw-bottom-2 tw-right-5 tw-flex-col tw-justify">
-//       <h1 className="md:tw-text-2xl tw-text-xs tw-text-white">DESIGN SERVICES</h1>
-//       <h1 className="tw-ml-16 md:tw-text-xl tw-text-white">COLLECTION</h1>
-//       <button className="tw-ml-16 tw-px-4 md:tw-text-sm tw-text-white tw-border-2 tw-bg-green-400">Shop Now &#8811;</button>
-//     </div> 
-//     </div>   
-// </div> */} 
+  <div className="">
+    <img src="./imagesstatic/kids_letters-black_with_yellow_print-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 md:tw-h-52 sm:tw-w-72 sm:tw-h-72" />
+    <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+    <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+    <div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 lg:tw-px-10 xl:tw-px-14 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
+      <input type="radio" name="gender" value="male" className="" />
+      <input type="radio" name="gender" value="male" />
+      <input type="radio" name="gender" value="male" />
+      <input type="radio" name="gender" value="male" />
+    </div>
+  </div>
 
-{/* // <div className="tw-h-auto tw-bg-green-500 tw--mt-6 tw--mb-3 tw-w-2"></div>
-// </div>
-// <div className="tw-flex tw-flex-row tw-h-1 tw-bg-green-500 tw-mt-2 tw-m-5"></div> */}
+</div> */}
+
+{/* <div className="tw-grid tw-grid-cols-2 sm:tw-grid-cols-4 tw-gap-x-20 tw-px-2 tw-mt-5 md:tw-gap-x-10 xl:tw-gap-x-32 2xl:tw-gap-x-52">
+
+  <div className="">
+    <img src="./imagesstatic/image-removebg-preview (3).png" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+    <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+    <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+    <div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 lg:tw-px-10 xl:tw-px-14 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
+      <input type="radio" name="gender" value="male" className="" />
+      <input type="radio" name="gender" value="male" />
+      <input type="radio" name="gender" value="male" />
+      <input type="radio" name="gender" value="male" />
+    </div>
+  </div>
+
+  <div className="">
+    <img src="./imagesstatic/kids-parkour-urban-t-shirt-black-yellow-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+    <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+    <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+    <div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 lg:tw-px-10 xl:tw-px-14 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
+      <input type="radio" name="gender" value="male" className="" />
+      <input type="radio" name="gender" value="male" />
+      <input type="radio" name="gender" value="male" />
+      <input type="radio" name="gender" value="male" />
+    </div>
+  </div>
+
+  <div className="">
+    <img src="./imagesstatic/kids-transformers-black-t-shirt-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+    <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+    <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+    <div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 xl:tw-px-14 lg:tw-px-10 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
+      <input type="radio" name="gender" value="male" className="" />
+      <input type="radio" name="gender" value="male" />
+      <input type="radio" name="gender" value="male" />
+      <input type="radio" name="gender" value="male" />
+    </div>
+  </div>
+
+  <div className="">
+    <img src="./imagesstatic/indigo2.jpeg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+    <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
+    <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs xl:tw-text-xl tw-font-semibold">RM20-RM50</h1>
+    <div className="tw-grid tw-grid-cols-4 md:tw-grid-cols-4 md:tw-px-10 lg:tw-px-10 xl:tw-px-14 2xl:tw-px-24 tw-mt-3 tw-font-semibold tw-px-4 tw-transform tw-scale-100 sm:tw-scale-150">
+      <input type="radio" name="gender" value="male" className="" />
+      <input type="radio" name="gender" value="male" />
+      <input type="radio" name="gender" value="male" />
+      <input type="radio" name="gender" value="male" />
+    </div>
+  </div>
+
+</div> */}

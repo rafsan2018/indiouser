@@ -27,12 +27,22 @@ export default function Category() {
         useEffect(() => {
             if (data) {
                 setProducts(data.category)
-               // console.log(products)
+                console.log('products',products.products)
                 // localStorage.setItem('products',JSON.stringify(data.products))
             }
         }, [data])
 
-       // console.log('product', products);
+       let sizes = products.products && products.products.reduce((acc,cv)=>{
+           acc = acc.concat(cv.sizes.id)
+           return acc;
+       },[]);
+       //const uniqueSizes = [...new Set(sizes)]
+       const sizemap = sizes
+       console.log(sizemap)
+
+       if(loading){
+           <div>Loading...</div>
+       }
 
 
     return (
@@ -44,48 +54,33 @@ export default function Category() {
                 <div className="tw-flex tw-flex-col md:tw-flex-row tw-w-full tw-mt-8 md:tw-px-20 tw-space-y-5 tw-space-x-10">
 
                     {/* <div className="tw-flex tw-h-auto tw-border tw-border-green-500 tw-mx-10"></div> */}
-                    <div className="tw-grid tw-grid-cols-3 tw-gap-x-1 md:tw-gap-x-14 tw-h-full">
+                    <div className="tw-grid xl:tw-grid-cols-4 md:tw-grid-cols-3 xs:tw-grid-cols-2 tw-gap-y-2 tw-gap-x-1 md:tw-gap-x-14 tw-h-full">
 
                         {products.products && products.products.map((product, idx) => (
-
-                            <div key={idx} className="md:tw-mt-10">
-                                {product.images && product.images.map((item,key)=>(
+                            <>
+                            
+                            <div key={idx} className="tw-rounded-lg tw-shadow-md tw-border-gray-100 tw-border-2 
+                            tw-space-y-2 md:tw-mt-10 hover:tw-opacity-75">
+                                {product.images && product.images.map((item,i)=>(
                                 item.is_default === true &&                                
-                                 <Link  to={`/product/${ product.slug }`}>
-                                  <img src={'http://182.160.118.196:82/'+item.image} alt={item.image} className="tw-h-40 tw-w-40"></img>
-                                  </Link>                                                                                           
+                                <Link  to={`/product/${ product.slug }`} style={{textDecoration:'none'}} key={i}>
+                                  <img src={'http://182.160.118.196:82/'+item.image}  alt={item.image} className="tw-h-2/3 tw-w-full"></img>
+                                  </Link>                                                                                       
                                  ))}
                                 
                                 <h4 className="tw-pt-2 tw-text-xs md:tw-text-xl tw-text-green-500 tw-font-bold">RM {product.price}</h4>
                                 <h2 className="tw-mt-0 tw-text-xs md:tw-text-xl tw-text-black tw-font-bold">{product.title}</h2>
                                 <div className="tw-flex tw-flex-row tw-justify-between">
-                                    <span className="tw-text-xs"><StartRating></StartRating></span>
+                                    <span className="tw-text-md"><StartRating></StartRating></span>
                                     <span><FcLike className="tw-h-3 tw-w-3 md:tw-h-5 md:tw-w-5"></FcLike></span>
                                 </div>
 
                             </div>
+                            
+                            </>
+                            
 
                         ))}
-                        {/* {products && products.map((product, idx) => (
-
-                            <div key={idx} className="md:tw-mt-10">
-                                {product.images && product.images.map((item, key) => (
-                                    item.is_default === true &&
-                                    <Link to={`/products/${product.slug}`}>
-                                        <img src={'http://182.160.118.196:82/' + item.image} alt={item.image} className="h-32 w-32"></img>
-                                    </Link>
-                                ))}
-
-                                <h4 className="tw-pt-2 tw-text-xs md:tw-text-xl tw-text-green-500 tw-font-bold">RM {product.price}</h4>
-                                <h2 className="tw-mt-0 tw-text-xs md:tw-text-xl tw-text-black tw-font-bold">{product.title}</h2>
-                                <div className="tw-flex tw-flex-row tw-justify-between">
-                                    <span className="tw-text-xs"><StartRating></StartRating></span>
-                                    <span><FcLike className="tw-h-3 tw-w-3 md:tw-h-5 md:tw-w-5"></FcLike></span>
-                                </div>
-
-                            </div>
-
-                        ))} */}
                     </div>
 
 

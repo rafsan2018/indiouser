@@ -8,7 +8,7 @@ export default function StartRating() {
             {[...Array(5)].map((start, i)=>{
                 const ratingValue= i+1;
                 return (
-                    <div className="">
+                    <div className="" key={i}>
                         <label>
                             <input 
                                 type="radio" 

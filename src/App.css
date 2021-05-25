@@ -29,6 +29,40 @@
 #slideImg{
   width: 100%;
   height: 100%;
+  animation: zoom 3s linear infinite;
+}
+@keyframes zoom {
+  0%{
+    transform: scale(1.3);
+  }
+  15%{
+    transform: scale(1);
+  }
+  85%{
+    transform: scale(1);
+  }
+  100%{
+    transform: scale(1.3);
+  }
+}
+#slideImg1{
+  width: 18rem;
+  height: 18rem;
+  animation: zoom1 3s linear infinite;
+}
+@keyframes zoom1 {
+  0%{
+    transform: scale(1.3);
+  }
+  15%{
+    transform: scale(1);
+  }
+  85%{
+    transform: scale(1);
+  }
+  100%{
+    transform: scale(1.3);
+  }
 }
 .overlay{
   width: 100%;
@@ -43,51 +77,9 @@
   text-align: center;
   color: #fff;
 }
-.box{
-  width: 350px;
-  padding: 10px;
-}
 
-/*begin first box*/
-.first{
-  width: 300px;
-  height: 100px;
-  margin: 10px;
-  border-width: 0 2px 0 2px;
-  border-color: rgb(12, 185, 55);
-  border-style: solid;
-  position: relative;
-}
-
-.first span {
-  position: absolute;
-  display: flex;
-  right: 0;
-  left: 0;
-  align-items: center;
-}
-.first .foo{
-  top: -8px;
-}
-.first .bar{
-  bottom: -8.5px;
-}
-.first span:before{
-  margin-right: 15px;
-}
-.first span:after {
-  margin-left: 15px;
-}
-.first span:before , .first span:after {
-  content: ' ';
-  height: 2px;
-  background: rgb(66, 224, 145);
-  display: block;
-  width: 50%;
-}
 .slide_button{
   position: absolute;
-  
   margin-top: 100px;
   right: 250px;
   width: 200px;
@@ -95,7 +87,82 @@
   text-align: center;
   border-radius: 5px;
   font-weight: bold;
-  background: green;
+  background:#4aa96c;
   color: #fff;
   cursor: pointer;
 }
+
+@media (max-width:768px) {
+  .slider_image{
+    height: 100vh;
+  }
+  .banner_slide{
+    height: 100vh;
+  }
+  .content_slide{
+    width: 100%;
+    margin: 20px 0 auto;
+    text-align: center;
+  }
+  .slide_button{
+    margin-top: 30px;
+    right:15px;
+    width: 200px;
+  }
+}
+@media (max-width:1024px) {
+  .slider_image{
+    height: 50vh;
+  }
+  .banner_slide{
+    height: 50vh;
+  }
+  .content_slide{
+    width: 100%;
+    margin: 60px 0 auto;
+    text-align: center;
+  }
+  .slide_button{
+    margin-top: 30px;
+    right:15px;
+    width: 200px;
+  }
+}
+
+.fieldSet1{
+  margin: 20px;
+  padding: 0px 20px 0px 20px;
+  border-radius: 5px;
+  border-width: 1px;
+  align-items: center;
+  border-color: #000;
+}
+.legegend1{
+  position: absolute;
+  top: 10;
+  left: 10;
+  font-weight: bold;
+  background-color: #fff;
+}
+
+/* .fieldSet1{
+  margin: 10,
+  paddingHorizontal: 10;
+  paddingBottom: 10;
+  borderRadius: 5;
+  borderWidth: 1;
+  alignItems: 'center';
+  borderColor: '#000';
+}
+
+.legend1{
+  position: 'absolute',
+  mar
+  top: ,
+  left: 10,
+  fontWeight: 'bold',
+  backgroundColor: '#FFFFFF'
+} */
+
+
+

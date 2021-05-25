@@ -4,26 +4,6 @@ import Footer from '../components/footer';
 import CheckOut from '../components/checkout';
 import Login from '../components/login';
 import App from '../App';
-//import {AuthReducer,initialState} from '../Reducer/userReducer'
-
-//export const AuthContext = createContext();
-
-//const [user, dispatch] = useReducer(AuthReducer, initialState);
-
-// export const AuthProvider = (props) => {
-//   const [user, dispatch] = useReducer(AuthReducer, initialState);
-//   //const value={user,dispatch}
- 
-//   return (
-//     <AuthContext.Provider value={{user,dispatch}}>
-//         {props.children}
-//             {/* <div>
-//              <div className="App">{!user.isAuthenticated ? <Login /> : <CheckOut />}</div>
-//              <Footer></Footer>
-//             </div>  */}
-//     </AuthContext.Provider>
-//   );
-// };
 
 const initialState ={
     isAuthiticated:false,

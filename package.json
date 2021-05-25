@@ -23,6 +23,7 @@
     "react-paginate": "^7.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-simple-snackbar": "^1.1.11",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "spinners-react": "^1.0.4",

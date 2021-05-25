@@ -29,7 +29,9 @@ module.exports = {
       indigo: colors.indigo,
       purple: colors.violet,
       pink: colors.pink,
-      woa:'#35aa99'
+      woa:'#35aa99',
+      hovertext:'#eeeeee',
+      menubar:'#2cab99'
     },
     spacing: {
       px: '1px',
@@ -146,6 +148,8 @@ module.exports = {
       text: 'text',
       move: 'move',
       'not-allowed': 'not-allowed',
+      crosshair: 'crosshair',
+      'zoom-in': 'zoom-in',
     },
     divideColor: (theme) => theme('borderColor'),
     divideOpacity: (theme) => theme('borderOpacity'),

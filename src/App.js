@@ -53,7 +53,7 @@ function App() {
             <div className="content_slide md:tw-space-y-20 xs:tw-space-y-5">
               <h1 className="tw-text-lg tw-font-head tw-tracking-widest">GET YOUR WARDROBE READY FOR</h1>
               <div className="tw-rounded md:tw-border-8 xs:tw-border-4 tw-border-green-600 xl:tw-m-32 xs:tw-m-5">
-                <p className="lg:tw-text-7xl 2xl:tw-text-9xl xs:tw-text-xl tw-font-head tw-p-2 tw-font-bold tw-tracking-widest">SUMMER</p>
+                <p className="lg:tw-text-7xl xl:tw-text-9xl xs:tw-text-xl tw-font-head tw-p-2 tw-font-bold tw-tracking-widest">SUMMER</p>
                 <span className="lg:tw-text-6xl xs:tw-text-xl tw-font-head tw-font-bold tw-tracking-widest">SAVINGS</span>
               </div>             
             </div>
@@ -70,7 +70,7 @@ function App() {
         </div>
 
         <div className="tw-flex tw-flex-row tw-px-5">
-          <div className="sm:tw-invisible xs:tw-visible 2xl:tw-visible tw-h-auto tw-bg-green-500 tw--mt-6 sm:tw--mt-2 lg:tw--mt-16 xl:tw--mt-7 tw--mb-3 tw-w-1"></div>
+          <div className="sm:tw-invisible xs:tw-visible xl:tw-visible tw-h-auto tw-bg-green-500 tw--mt-6 sm:tw--mt-2 lg:tw--mt-16 xl:tw--mt-7 tw--mb-3 tw-w-1"></div>
          {/* start products put in section */}
           <div className="tw-flex tw-flex-col">
 
@@ -176,7 +176,7 @@ function App() {
 
           </div>
       {/* end product list */}
-          <div className="sm:tw-invisible xs:tw-visible 2xl:tw-visible tw-h-auto tw-bg-green-500 tw-ml-28 tw--mt-6 sm:tw--mt-2 md:tw--mt-6 xl:tw--mt-7 lg:tw--mt-16 tw--mb-3 tw-w-1 md:tw-w-1"></div>
+          <div className="sm:tw-invisible xs:tw-visible xl:tw-visible tw-h-auto tw-bg-green-500 tw-ml-28 tw--mt-6 sm:tw--mt-2 md:tw--mt-6 xl:tw--mt-7 lg:tw--mt-16 tw--mb-3 tw-w-1 md:tw-w-1"></div>
         </div>
         
         

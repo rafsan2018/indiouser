@@ -210,11 +210,11 @@ export default function Header() {
               {/* <div><BiSearch size={20} className="tw-absolute md:tw-mt-4 xs:tw-mt-2 tw-text-white">
               </BiSearch></div> */}
               <div className="">
-                  <Link to="/cart" className="tw-absolute xs:tw--mt-6 md:tw--mt-4 tw-bg-fixed tw-text-white" style={{textDecoration:'none'}}>
+                  <Link to="/cart" className="tw-bg-fixed tw-text-white" style={{textDecoration:'none'}}>
                     <span className={cart.length > 0 ? 
-                      "tw-visible xs:tw-mt-6 md:tw-mt-0 lg:tw-ml-6 xl:tw-ml-6 xs:tw-ml-28 tw-bg-red-600 xl:tw-w-6 xs:tw-w-4 xl:tw-h-6 xs:tw-h-4 xl:tw-text-sm xl:tw-text-xs tw-rounded-full tw-flex tw-items-center tw-justify-center" 
+                      "tw-visible xs:tw-mt-2 md:tw-mt-0 lg:tw--mt-2 lg:tw-ml-6  xs:tw-ml-28 tw-bg-red-600 xl:tw-w-6 xs:tw-w-4 xl:tw-h-6 xs:tw-h-4 xl:tw-text-sm xl:tw-text-xs tw-rounded-full tw-flex tw-items-center tw-justify-center" 
                       : "tw-invisible"}>{cart.length}</span>   
-                    <RiShoppingBasketFill size={30} className="xs:tw-ml-20 md:tw-ml-0 xs:tw--mt-0 md:tw--mt-2 lg:tw--mt-1 xl:tw--mt-0"/>
+                    <RiShoppingBasketFill size={30} className="tw-sticky xs:tw-ml-20 md:tw-ml-0 xl:tw-ml-8 2xl:tw-ml-0 xs:tw--mt-5 md:tw--mt-2  xl:tw--mt-2"/>
                   </Link>
                 
               </div>

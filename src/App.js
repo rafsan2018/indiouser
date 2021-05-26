@@ -70,7 +70,7 @@ function App() {
         </div>
 
         <div className="tw-flex tw-flex-row tw-px-5">
-          <div className="sm:tw-invisible xs:tw-visible xl:tw-visible tw-h-auto tw-bg-green-500 tw--mt-6 sm:tw--mt-2 lg:tw--mt-16 xl:tw--mt-7 tw--mb-3 tw-w-1"></div>
+          <div className="sm:tw-invisible xs:tw-visible xl:tw-visible tw-h-auto tw-bg-green-500 tw--mt-6 sm:tw--mt-2 lg:tw--mt-7 xl:tw--mt-7 tw--mb-3 tw-w-1"></div>
          {/* start products put in section */}
           <div className="tw-flex tw-flex-col">
 
@@ -176,7 +176,7 @@ function App() {
 
           </div>
       {/* end product list */}
-          <div className="sm:tw-invisible xs:tw-visible xl:tw-visible tw-h-auto tw-bg-green-500 tw-ml-28 tw--mt-6 sm:tw--mt-2 md:tw--mt-6 xl:tw--mt-7 lg:tw--mt-16 tw--mb-3 tw-w-1 md:tw-w-1"></div>
+          <div className="sm:tw-invisible xs:tw-visible xl:tw-visible tw-h-auto tw-bg-green-500 tw-ml-28 tw--mt-6 sm:tw--mt-2 md:tw--mt-6 xl:tw--mt-7 lg:tw--mt-7 tw--mb-3 tw-w-1 md:tw-w-1"></div>
         </div>
         
         

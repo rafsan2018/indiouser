@@ -54,7 +54,7 @@ export default function Category() {
                 <div className="tw-flex tw-flex-col md:tw-flex-row tw-w-full tw-mt-8 md:tw-px-20 tw-space-y-5 tw-space-x-10">
 
                     {/* <div className="tw-flex tw-h-auto tw-border tw-border-green-500 tw-mx-10"></div> */}
-                    <div className="tw-grid xl:tw-grid-cols-4 md:tw-grid-cols-3 xs:tw-grid-cols-2 tw-gap-y-2 tw-gap-x-1 md:tw-gap-x-14 tw-h-full">
+                    <div className="tw-grid xl:tw-grid-cols-4 md:tw-grid-cols-3 xs:tw-grid-cols-2 tw-gap-y-2 tw-gap-x-1 xl:tw-gap-x-8 2xl:tw-gap-x-14 tw-h-full">
 
                         {products.products && products.products.map((product, idx) => (
                             <>

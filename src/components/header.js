@@ -117,10 +117,10 @@ export default function Header() {
       {/* End of haeder top */}
       {/* start menu bar ./imagesstatic/logoind.png */}
       {/* tw-display-block md:tw-h-auto md:tw-w-40 lg:tw-h-auto lg:tw-w-52 xl:tw-w-full xs:tw-h-8 xs:tw-w-32 */}
-       <div className="tw-flex tw-relative tw-bg-menubar xs:tw-pl-2 lg:tw-pl-0 xl:tw-pl-12 md:tw-px-5 lg:tw-py-4 xl:tw-py-8 
+       <div className="tw-flex tw-relative tw-bg-menubar xs:tw-pl-2 md:tw-pl-0 lg:tw-pl-12 md:tw-px-5 lg:tw-py-4 xl:tw-py-8 
        xs:tw-py-2 2xl:tw-space-x-14 xs:tw-space-x-2 lg:tw-overflow-visible xs:tw-overflow-hidden md:tw-h-auto xs:tw-h-14">
 
-         <div className="tw-flex xs:tw-w-1/2 sm:tw-w-2/12 xl:tw-w-2/12 tw-h-auto tw-space-x-2">
+         <div className="tw-flex xs:tw-w-1/2 sm:tw-w-2/12 lg:tw-w-2/12 tw-h-auto tw-space-x-2">
             <button onClick={() => onClickNav()} className="lg:tw-invisible tw-visible focus:tw-outline-none">
               <GiHamburgerMenu className="tw-mt-1">
               </GiHamburgerMenu>
@@ -133,9 +133,9 @@ export default function Header() {
             </div>
          </div>
 
-         <div className="tw-flex-grow tw-invisible lg:tw-visible sm:tw-w-4/12 xs:tw-w-0">
+         <div className="tw-flex-grow tw-invisible lg:tw-visible lg:tw-w-4/12 xs:tw-w-0 lg:tw-pl-5">
            <nav>
-             <ul className="tw-flex xs:tw-space-x-1 sm:tw-space-x-10 md:tw-space-x-12 lg:tw-space-x-20 xl:tw-space-x-24 xl:tw-mt-2">
+             <ul className="tw-flex xs:tw-space-x-1 sm:tw-space-x-10 md:tw-space-x-12 lg:tw-space-x-14 xl:tw-space-x-24 xl:tw-mt-2">
                <li className="xl:tw-text-3xl sm:tw-text-xl tw-font-head tw-text-white tw-font-bold">
                  <Link to="/" className="tw-transition tw-duration-1000 tw-ease-in-out tw-px-5 hover:tw-text-white hover:tw-bg-gray-400" style={{ textDecoration: 'none' }}
                  >HOME</Link>
@@ -205,16 +205,16 @@ export default function Header() {
            </nav>
          </div>
 
-         <div className="lg:tw-w-2/12 xl:tw-w-1/12 xs:tw-w-1/2">
+         <div className=" lg:tw-w-1/12 xs:tw-w-1/2">
             {/* <div className="tw-flex tw-flex-row lg:tw-space-x-20 xs:tw-space-x-10 xs:tw-ml-10 lg:tw-ml-0"> */}
               {/* <div><BiSearch size={20} className="tw-absolute md:tw-mt-4 xs:tw-mt-2 tw-text-white">
               </BiSearch></div> */}
               <div className="">
                   <Link to="/cart" className="tw-absolute xs:tw--mt-6 md:tw--mt-4 tw-bg-fixed tw-text-white" style={{textDecoration:'none'}}>
                     <span className={cart.length > 0 ? 
-                      "tw-visible xs:tw-mt-6 md:tw-mt-0 xl:tw-ml-6 xs:tw-ml-28 tw-bg-red-600 xl:tw-w-6 xs:tw-w-4 xl:tw-h-6 xs:tw-h-4 xl:tw-text-sm xl:tw-text-xs tw-rounded-full tw-flex tw-items-center tw-justify-center" 
+                      "tw-visible xs:tw-mt-6 md:tw-mt-0 lg:tw-ml-6 xl:tw-ml-6 xs:tw-ml-28 tw-bg-red-600 xl:tw-w-6 xs:tw-w-4 xl:tw-h-6 xs:tw-h-4 xl:tw-text-sm xl:tw-text-xs tw-rounded-full tw-flex tw-items-center tw-justify-center" 
                       : "tw-invisible"}>{cart.length}</span>   
-                    <RiShoppingBasketFill size={30} className="xs:tw-ml-20 md:tw-ml-0 xs:tw--mt-0 md:tw--mt-2 xl:tw--mt-0"/>
+                    <RiShoppingBasketFill size={30} className="xs:tw-ml-20 md:tw-ml-0 xs:tw--mt-0 md:tw--mt-2 lg:tw--mt-1 xl:tw--mt-0"/>
                   </Link>
                 
               </div>

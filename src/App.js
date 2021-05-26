@@ -53,7 +53,7 @@ function App() {
             <div className="content_slide md:tw-space-y-20 xs:tw-space-y-5">
               <h1 className="tw-text-lg tw-font-head tw-tracking-widest">GET YOUR WARDROBE READY FOR</h1>
               <div className="tw-rounded md:tw-border-8 xs:tw-border-4 tw-border-green-600 xl:tw-m-32 xs:tw-m-5">
-                <p className="lg:tw-text-7xl xl:tw-text-9xl xs:tw-text-xl tw-font-head tw-p-2 tw-font-bold tw-tracking-widest">SUMMER</p>
+                <p className="lg:tw-text-9xl xs:tw-text-xl tw-font-head tw-p-2 tw-font-bold tw-tracking-widest">SUMMER</p>
                 <span className="lg:tw-text-6xl xs:tw-text-xl tw-font-head tw-font-bold tw-tracking-widest">SAVINGS</span>
               </div>             
             </div>

@@ -4,6 +4,8 @@ import axios from 'axios';
 import {AuthContext} from '../Context/userContext';
 import {loginUser,logout} from '../Actions/userActions';
 import { useSnackbar } from 'react-simple-snackbar';
+import Header from '../components/header';
+import Footer from '../components/footer';
 
 const options = {
     position: 'bottom-center',
@@ -61,6 +63,7 @@ export default function Login(props) {
 
     return (
         <div>
+            <Header></Header>
             <div className="tw-flex tw-flex-col tw-min-h-screen tw-justify-center">
                 <div className="tw-max-w-md tw-w-full tw-mx-auto">
                     <div className="tw-text-center tw-font-medium tw-text-xl">
@@ -116,6 +119,7 @@ export default function Login(props) {
                     </div>
                 </div>
             </div>
+            <Footer></Footer>
         </div>
     )
 }

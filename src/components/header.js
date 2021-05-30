@@ -1,11 +1,11 @@
 import React, {useState,useRef,useContext,useEffect} from 'react';
 import {BiHeadphone,BiSearch} from 'react-icons/bi';
 import {SiWechat, SiFacebook, SiInstagram,SiYoutube, SiTiktok} from 'react-icons/si';
-import {RiShoppingBasketFill, RiVisaLine, RiMastercardLine} from "react-icons/ri";
+import {RiShoppingBasketFill, RiVisaLine, RiMastercardLine,RiAccountCircleLine} from "react-icons/ri";
 import {CgMail} from "react-icons/cg";
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {useHistory, Link} from 'react-router-dom';
-import {useDetectOutsideClick, useDetectOutsideClick2,useDetectOutsideClick3} from './useDetectOutsideClick';
+import {useDetectOutsideClick, useDetectOutsideClick2,useDetectOutsideClick3,useDetectOutsideClick4} from './useDetectOutsideClick';
 import {useCart} from './context';
 import {AuthContext} from '../Context/userContext';
 import {CartContext} from '../Context/CartContext';
@@ -51,18 +51,28 @@ export default function Header() {
   }
 
     const dropdownRef = useRef(null);
+
     const dropdownRefservice = useRef(null);
+
     const navDownopen = useRef(null);
+
+    const userdropdown = useRef(null);
+
     const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
     const onClickButton = () => setIsActive(!isActive);
+
     const [isOpen, setIsOpen] = useDetectOutsideClick2(dropdownRefservice, false);
     const onClickButtonServices = () => setIsOpen(!isOpen);
+
     const [navOpen,setNavOpen]=useDetectOutsideClick3(navDownopen, false);
     const onClickNav = ()=>{
       setNavOpen(!navOpen);
       // setIsDrawer(!isDrawer);
       setIsDrawer((prevState) => !prevState)
     };
+
+    const [userOpen, setUserOpen] = useDetectOutsideClick4(userdropdown,false)
+    const onClickUser = () =>setUserOpen(!userOpen)
 
     const [shopselected, shopsetSelected] = useState(false)
     const [services, setServices] =useState(false)
@@ -98,16 +108,28 @@ export default function Header() {
             </div>
             <div>
             <ul className="tw-flex tw-flex-row md:tw-flex-row tw-list-none tw-ml-auto tw-space-x-4">
-            <li className="nav-item tw-text-white">
+            {/* <li className="nav-item tw-text-white">
               <a className="tw-flex tw-items-center tw-text-xs  hover:tw-opacity-75">
                 <button onClick={logout}>{logindata?'Logout':''}</button>
               </a>
-            </li>
+            </li> */}
             
-            <li className="nav-item tw-text-white">
-              <a className="tw-flex tw-items-center tw-text-xs hover:tw-opacity-75">
-                {logindata?logindata.name:<Link to="/login">Login</Link>}
-              </a>
+            <li className="nav-item tw-text-white tw--mt-1" 
+              onClick={onClickUser}>
+              
+                {/* {logindata?logindata.name:<Link to="/login">Login</Link>} */}
+                <RiAccountCircleLine size={25} ></RiAccountCircleLine>
+                <nav
+                    ref={userdropdown}
+                    className={`tw-z-20 tw-w-32 tw--ml-28 tw-h-24 tw-absolute tw-flex xs:tw-flex-col md:tw-flex-col tw-border-gray-600 tw-shadow-md tw-box-border tw-border tw-mt-0  tw-bg-gray-600 ${userOpen ? "visible" : "tw-invisible"}`}
+                  >
+                    <div className="tw-grid tw-grid-rows-2 tw-text-white tw-px-3">
+                      <button className="hover:tw-text-white hover:tw-bg-gray-400">{logindata?logindata.name:<Link to="/login" style={{textDecoration:'none'}}>Login</Link>}</button>
+                      <hr className="tw-h-px tw-text-green-500 tw-bg-green-500"></hr>
+                      <button onClick={logout} className="">{logindata?'Logout':''}</button>
+                      <hr className="tw-h-px tw-text-green-500 tw-bg-green-500"></hr>
+                    </div>
+                  </nav>
             </li>
           </ul>
           </div>
@@ -212,9 +234,9 @@ export default function Header() {
               <div className="">
                   <Link to="/cart" className="tw-bg-fixed tw-text-white" style={{textDecoration:'none'}}>
                     <span className={cart.length > 0 ? 
-                      "tw-visible xs:tw-mt-2 md:tw-mt-0 lg:tw--mt-2 lg:tw-ml-16 2xl:tw-ml-6  xs:tw-ml-28 tw-bg-red-600 xl:tw-w-6 xs:tw-w-4 xl:tw-h-6 xs:tw-h-4 xl:tw-text-sm xl:tw-text-xs tw-rounded-full tw-flex tw-items-center tw-justify-center" 
+                      "tw-visible xs:tw-mt-2 md:tw-mt-0 lg:tw--mt-2 lg:tw-ml-16 2xl:tw-ml-6 xs:tw-ml-28 tw-bg-red-600 xl:tw-w-6 xs:tw-w-4 xl:tw-h-6 xs:tw-h-4 xl:tw-text-sm xl:tw-text-xs tw-rounded-full tw-flex tw-items-center tw-justify-center" 
                       : "tw-invisible"}>{cart.length}</span>   
-                    <RiShoppingBasketFill size={30} className="tw-sticky xs:tw-ml-20 md:tw-ml-0 xl:tw-ml-8 2xl:tw-ml-0 xs:tw--mt-5 md:tw--mt-2  xl:tw--mt-2"/>
+                    <RiShoppingBasketFill size={30} className="tw-sticky xs:tw-ml-20 md:tw-ml-0 xl:tw-ml-8 2xl:tw-ml-0 xs:tw--mt-5 md:tw--mt-6  xl:tw--mt-4"/>
                   </Link>
                 
               </div>

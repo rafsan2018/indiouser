@@ -1,4 +1,4 @@
-import React, {useState,useContext} from 'react'
+import React, {useState,useContext, useEffect} from 'react'
 import {Link,useHistory} from 'react-router-dom';
 import axios from 'axios';
 import {AuthContext} from '../Context/userContext';
@@ -6,6 +6,9 @@ import {loginUser,logout} from '../Actions/userActions';
 import { useSnackbar } from 'react-simple-snackbar';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import {useMutation} from '@apollo/client'
+import {LOGIN} from "../GraphQL/Mutation";
+import {CartContext} from '../Context/CartContext'
 
 const options = {
     position: 'bottom-center',
@@ -32,34 +35,45 @@ export default function Login(props) {
     //     password:""
     // }
 
-    const {dispatch} = useContext(AuthContext)
+    const {cart} = useContext(CartContext);
+
     const history=useHistory();
     const submitHandler=(e)=>{
         e.preventDefault()
     }
    
     const [openSnackbar, closeSnackbar] = useSnackbar(options);
-    const onSubmitform=async(e)=>{
-        const submit={
-            email:email,
-            password:password
+    // const products = JSON.parse(localStorage.getItem('cart'))
+
+    const [login] = useMutation(LOGIN)
+    const onSubmitform=()=>{
+        const submit = {
+            email: email,
+            password: password
         }
-        const headers = {
-            'Content-Type': 'application/json',
-            'Authorization': 'auth-token',
-          }
-        axios.post('https://kaderecommerceapi.herokuapp.com/api/user/login',submit,{headers:headers})
-             .then(res=>{
-                 if(email===null && password===null){
-                   return openSnackbar('Please Insert Email and password');
-                 }else{
-                 setToken(res.data.token)
-                 dispatch({type:'LOGIN',payload:res.data})
-                 props.history.push('/')
-                 return openSnackbar("Login Success")
-                 }
-             })
+        login({
+            variables:{
+                email: submit.email,
+                password: submit.password
+            }
+        }).then(res => {
+            if (res.data.login !== null) {
+                console.log('user loged in', res.data);
+                localStorage.setItem("user",JSON.stringify(res.data.login));
+                if(cart.length > 0){
+                    history.push('./checkout')
+                }else{
+                    history.push('./')
+                }
+                return openSnackbar("Login Successfull")
+            } else {
+                return openSnackbar("Invalid User name and password")
+            }
+        }).catch(e => {
+            alert('Invalid user');
+        });
     }
+
 
     return (
         <div>
@@ -112,7 +126,8 @@ export default function Login(props) {
                                 </div>
                             </div>
                             <div>
-                                <button onClick={onSubmitform} className="tw-w-full tw-py-2 tw-px-4 tw-bg-blue-600 tw-rounded-md tw-text-white">Submit</button>
+                                <button onClick={onSubmitform} className="tw-w-full tw-py-2 tw-px-4 tw-bg-blue-600 tw-rounded-md tw-text-white
+                                focus:tw-outline-none">Submit</button>
                             </div>
 
                         </form>

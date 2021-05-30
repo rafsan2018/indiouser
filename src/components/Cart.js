@@ -4,7 +4,7 @@ import Footer from '../components/footer';
 import {useCart} from '../components/context';
 import {CartContext} from '../Context/CartContext'
 import { useEffect } from 'react';
-import {Link} from 'react-router-dom';
+import {Link,useHistory} from 'react-router-dom';
 
 export default function Cart() {
 
@@ -13,8 +13,20 @@ export default function Cart() {
    const {cart,dispatch} = useContext(CartContext);
 
     const subtotalPrice= cart.reduce((a,c)=>a+c.price*c.qty,0);
-    const shippingPrice= subtotalPrice > 1000 ? 0 : 20;
+    //const shippingPrice= subtotalPrice > 1000 ? 0 : 20;
+    const shippingPrice = 0;
     const totalPrice = subtotalPrice + shippingPrice;
+
+    const user = JSON.parse(localStorage.getItem('user'))
+
+    const history=useHistory();
+    const onClickCheckout =()=>{
+        if(user === null){
+            return history.push("/login")
+        }else{
+            return history.push("/checkout")
+        }
+    }
 
     return (
         <div>
@@ -103,8 +115,10 @@ export default function Cart() {
         <hr className="lg:tw-w-full tw-bg-green-500 tw-h-1"></hr>
         <div className="">
             <button className="tw-border-4 tw-rounded-full tw-border-green-500 tw-bg-green-600 focus:tw-outline-none tw-px-3 tw-py-1 tw-w-full tw-text-md 
-            tw-font-extrabold hover:tw-bg-gray-400 tw-transition tw-duration-1000 tw-ease-in-out hover:tw-text-white" style={{ textDecoration: 'none' }}>
-                <Link to="/checkout">Process to Checkout</Link>
+            tw-font-extrabold hover:tw-bg-gray-400 tw-transition tw-duration-1000 tw-ease-in-out hover:tw-text-white" style={{ textDecoration: 'none' }}
+             onClick={onClickCheckout}>
+                {/* <Link to="/checkout">Process to Checkout</Link> */}
+                 Process to Checkout
                 </button>
         </div>
     </div>

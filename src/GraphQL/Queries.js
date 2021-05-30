@@ -95,3 +95,29 @@ query($slug: String!){
     }
 }
 `
+export const LOAD_ORDER = gql`
+query($id: ID!){
+    order(id: $id){
+        id
+        orderDetails{
+            id
+            title
+            size
+            color
+            image
+            price
+            qty
+          }
+          shipping{
+            id
+            name
+            phone
+            email
+            city
+            address
+            state
+            postal_code
+          }  
+    }
+}
+`

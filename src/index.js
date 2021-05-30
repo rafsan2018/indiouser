@@ -17,6 +17,7 @@ import SignUp from '../src/components/signup';
 import PlaceOrder from '../src/components/PlaceOrder';
 import OrderComplete from '../src/components/OrderComplete';
 import Category from '../src/components/category';
+import PaymentSuccess from '../src/components/paymentsuccess';
 import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import {ApolloClient,InMemoryCache,HttpLink,from,ApolloProvider} from '@apollo/client';
 import {onError} from '@apollo/client/link/error';
@@ -61,7 +62,8 @@ ReactDOM.render(
             <Route path="/checkout" exact component={CheckOut}></Route>
             <Route path="/login" exact component={Login}></Route>
             <Route path="/signup" exact component={SignUp}></Route>
-            <Route path="/placeorder" exact component={PlaceOrder}></Route>
+            <Route path="/order/:id" exact component={PlaceOrder}></Route>
+            <Route path="/paymentcomplete" exact component={PaymentSuccess}></Route>
             <Route path="/completeorder" exact component={OrderComplete}></Route>
           </Switch>
       </Router>

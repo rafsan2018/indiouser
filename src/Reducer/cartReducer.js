@@ -23,6 +23,7 @@ export const cartReducer = (state, action) => {
                     if(cart.id === action.cart.id){
                         console.log(cart.qty ,'===',action.cart.qty);
                         cart.qty = cart.qty + action.cart.qty;
+                        // return "Product Already added in cart"
                     }
                     console.log('final cart qty: ', cart.qty);
                     return cart;

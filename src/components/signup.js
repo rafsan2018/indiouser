@@ -33,14 +33,21 @@ const validateForm = (errors) => {
   return valid;
 }
 
+const initilaState ={name:'',email:'',phone:'',password:'',naError:'',emailError:'',errorPhone:'',errorPassword:''}
+
+
 export default function SignUp(props) {
 
-    const [name,setName]=useState(null)
-    const [email,setEmail]=useState(null)
-    const [password,setPassword]=useState(null)
+    const [name,setName]=useState('')
+    const [email,setEmail]=useState('')
+    const [password,setPassword]=useState('')
     const [phone,setPhone] = useState('')
     const [token,setToken]=useState('')
-    const [errors ,setErrors] = useState({name:'',email:'',phone:'',password:''})
+    const [naError,setNameError] = useState('')
+    const [emailError,setEmailError] = useState('')
+    const [errorPhone,setErrorPhone] = useState('')
+    const [errorPassword,setErrorPassword] = useState('')
+    const [errors ,setErrors] = useState()
     // const [userLogin,setuserLogin]=useState({
     //     email:"",
     //     password:""
@@ -48,48 +55,58 @@ export default function SignUp(props) {
 
     const {dispatch} = useContext(AuthContext)
     const history=useHistory();
-    const submitHandler=(e)=>{
+    const  validate = () => {
+     
+        let nameError = "";
+        let emailError= "";
+        let phoneError = "";
+        let passError = ""
+         
+        if(name.length < 5 ){
+            nameError = "name should be atleast 5 character";
+        }
+        if(nameError){
+            setNameError(nameError);
+            return false
+        }
+        if(!email.includes('@')){
+            emailError="Invalid Email";
+        }
+        if(emailError){
+             setEmailError(emailError)
+            return false
+        }
+        if(phone.length < 10){
+            phoneError="Phone Should be 10 character"
+        }
+        if(phoneError){
+             setErrorPhone(phoneError)
+            return false
+        }
+        if(password.length < 8){
+            passError="Password Should be 8 character"
+        }
+        if(passError){
+            setErrorPassword(passError)
+            return false 
+        }
+        
+         return true;
+      }
+     
+      const submitHandler=(e)=>{
         e.preventDefault()
     }
-
-    const  handleChange = (event) => {
-        event.preventDefault();
-        const { name, value } = event.target;
-        
-    
-        switch (name) {
-          case 'name': 
-            errors.name = 
-              value.length < 5
-                ? 'Full Name must be 5 characters long!'
-                : '';
-            break;
-          case 'email': 
-            errors.email = 
-              validEmailRegex.test(value)
-                ? ''
-                : 'Email is not valid!';
-            break;
-          case 'password': 
-            errors.password = 
-              value.length < 6
-                ? 'Password must be 6 characters long!'
-                : '';
-            break;
-          default:
-            break;
-        }
-    
-        setErrors({errors, [name]: value});
-      }
-
     const [openSnackbar, closeSnackbar] = useSnackbar(options);
 
     const [signup] = useMutation(SIGN_UP)
-    const onSubmitform=async()=>{
-        if(!name,!email,!phone,!password){
-            openSnackbar(" Plase fill up all form")
-        }else{
+    const onSubmitform=async(e)=>{
+        e.preventDefault()
+       // const isValid = validate()
+       const isValid = validate()
+       if(!isValid){  
+          console.log(emailError)
+       }else{
             await signup({
                 variables:{
                     name: name,
@@ -102,10 +119,11 @@ export default function SignUp(props) {
                 if(res.data.signup !== null){
                     history.push("./login")
                 }else{
-                    openSnackbar(" Plase fill up all form")
+                    openSnackbar("Plase fill up all form")
                 }
                 return openSnackbar("Registration Successfully")
             })
+            
         }
 
         
@@ -126,57 +144,56 @@ export default function SignUp(props) {
                                 <input
                                  name="name"
                                  value={name}
-                                 onChange={()=>handleChange()} 
+                                 onChange={(e)=>setName(e.target.value)} 
                                  type="text" 
                                  placeholder="Enter Name"
-                                 className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded tw-mt1"
-                                 required
+                                 className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded focus:tw-outline-none focus:tw-ring focus:tw-border-blue-300"
+                                 
                                  >
                                  </input>
-                                 {errors.name.length < 5 && 
-                                  <span className=''>{errors.name}</span>}
+                                <span className='tw-text-red-500'>{naError}</span>
                             </div>
                             <div>
-                                <label className="tw-text-xs tw-font-bold tw-text-gray-600 tw-block">Email</label>
+                                <label className="tw-text-xs tw-font-bold tw-text-gray-600 tw-block focus:tw-outline-none focus:tw-ring focus:tw-border-blue-300">Email</label>
                                 <input
                                  name="email"
                                  value={email}
-                                 onChange={()=>handleChange}  
+                                 onChange={(e)=>setEmail(e.target.value)}  
                                  type="text" 
                                  placeholder="Enter Email"
-                                 className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded tw-mt1"
-                                 required
+                                 className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded focus:tw-outline-none focus:tw-ring focus:tw-border-blue-300"
                                  >
                                  </input>
+                                 <span className='tw-text-red-500'>{emailError}</span>
                             </div>
                             <div>
-                                <label className="tw-text-xs tw-font-bold tw-text-gray-600 tw-block">Phone No</label>
+                                <label className="tw-text-xs tw-font-bold tw-text-gray-600 tw-block focus:tw-outline-none focus:tw-ring focus:tw-border-blue-300">Phone No</label>
                                 <input
-                                 name="phone"
+                                 
                                  value={phone}
                                  onChange={(e)=>setPhone(e.target.value)} 
                                  type="text" 
                                  placeholder="Enter Phone"
-                                 className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded tw-mt1"
-                                 required
+                                 className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded focus:tw-outline-none focus:tw-ring focus:tw-border-blue-300"
                                  >
                                  </input>
+                                 <span className='tw-text-red-500'>{errorPhone}</span>
                             </div>
                             <div>
                                 <label className="tw-text-xs tw-font-bold tw-text-gray-600 tw-block">Password</label>
                                 <input 
-                                 name="password"
-                                 onChange={()=>handleChange}  
+                                 name="password" 
                                  value={password}
-                                 type="text" 
+                                 type="password" 
+                                 onChange={(e)=>setPassword(e.target.value)} 
                                  placeholder="password"
-                                 className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded tw-mt1"
-                                 required
+                                 className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded focus:tw-outline-none focus:tw-ring focus:tw-border-blue-300"
                                  ></input>
+                                 <span className='tw-text-red-500'>{errorPassword}</span>
                             </div>
 
                             <div>
-                                <button onClick={onSubmitform} className="tw-w-full tw-py-2 tw-px-4 tw-bg-blue-600 tw-rounded-md tw-text-white">Submit</button>
+                                <button onClick={onSubmitform} className="tw-w-full tw-py-2 tw-px-4 tw-bg-blue-600 tw-rounded-md tw-text-white focus:tw-outline-none">SIGN UP</button>
                             </div>
 
                         </form>

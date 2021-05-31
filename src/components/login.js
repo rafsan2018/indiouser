@@ -30,6 +30,9 @@ export default function Login(props) {
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const [token,setToken]=useState('')
+
+    const [errorMail,setErrorMail] =useState('')
+    const [errorPass,setErrorPass] = useState('')
     // const [userLogin,setuserLogin]=useState({
     //     email:"",
     //     password:""
@@ -41,7 +44,7 @@ export default function Login(props) {
     const submitHandler=(e)=>{
         e.preventDefault()
     }
-   
+    
     const [openSnackbar, closeSnackbar] = useSnackbar(options);
     // const products = JSON.parse(localStorage.getItem('cart'))
 
@@ -51,6 +54,7 @@ export default function Login(props) {
             email: email,
             password: password
         }
+        if(email || password){
         login({
             variables:{
                 email: submit.email,
@@ -72,6 +76,9 @@ export default function Login(props) {
         }).catch(e => {
             alert('Invalid user');
         });
+      }else{
+          openSnackbar("Email or password is wrong")
+      }
     }
 
 
@@ -93,9 +100,10 @@ export default function Login(props) {
                                  onChange={(e)=>setEmail(e.target.value)} 
                                  type="text" 
                                  placeholder="Enter Email"
-                                 className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded tw-mt1"
+                                 className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded focus:tw-outline-none focus:tw-ring focus:tw-border-blue-300"
                                  >
                                  </input>
+                                 <span>{errorMail}</span>
                             </div>
                             <div>
                                 <label className="tw-text-xs tw-font-bold tw-text-gray-600 tw-block">Password</label>
@@ -103,9 +111,9 @@ export default function Login(props) {
                                  name="password"
                                  onChange={(e)=>setPassword(e.target.value)} 
                                  value={password}
-                                 type="text" 
+                                 type="password" 
                                  placeholder="password"
-                                 className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded tw-mt1"
+                                 className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded focus:tw-outline-none focus:tw-ring focus:tw-border-blue-300"
                                  ></input>
                             </div>
                             <div className="tw-flex tw-items-center tw-justify-between">
@@ -127,7 +135,7 @@ export default function Login(props) {
                             </div>
                             <div>
                                 <button onClick={onSubmitform} className="tw-w-full tw-py-2 tw-px-4 tw-bg-blue-600 tw-rounded-md tw-text-white
-                                focus:tw-outline-none">Submit</button>
+                                focus:tw-outline-none">LOGIN</button>
                             </div>
 
                         </form>

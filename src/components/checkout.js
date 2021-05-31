@@ -7,9 +7,26 @@ import {useHistory} from 'react-router-dom';
 import {useMutation} from "@apollo/client";
 import {CREATE_ORDERS} from "../GraphQL/Mutation";
 import {CartContext} from '../Context/CartContext'
+import { useSnackbar } from 'react-simple-snackbar';
 import { useParams,Link } from "react-router-dom";
 import { useQuery } from '@apollo/client';
 import {LOAD_ORDER} from '../GraphQL/Queries';
+
+
+const options = {
+    position: 'bottom-center',
+    style: {
+        backgroundColor: '#1e6f5c',
+        color: '#ffffff',
+        fontFamily: 'sans-serif',
+        fontSize: '16px',
+        textAlign: 'left',
+    },
+    closeStyle: {
+        color: '#ffffff',
+        fontSize: '12px',
+    },
+};
 
 export default function CheckOut(props) {
     // const users = useContext(AuthContext)
@@ -29,6 +46,7 @@ export default function CheckOut(props) {
     const history=useHistory();
     
     const {cart} = useContext(CartContext);
+
      
 
     // useEffect(() => {
@@ -39,13 +57,15 @@ export default function CheckOut(props) {
     //     }
     // }, [data])
 
-      
+    const [openSnackbar, closeSnackbar] = useSnackbar(options);
     const [createOrder] = useMutation(CREATE_ORDERS)
 
     console.log("products",cart)
 
     const onClcikHandler=(e)=>{
         e.preventDefault()
+
+        if(name , email , phone , address , city , postalcode){
         createOrder({
             variables:{
                 user_id: user.id,
@@ -75,6 +95,9 @@ export default function CheckOut(props) {
             console.log("order",res.data.createOrder)
             props.history.push('/order/'+res.data.createOrder.id)
         })
+     }else {
+         return openSnackbar("please fill up all field")
+     }
     }
     return (
         <div>
@@ -93,7 +116,7 @@ export default function CheckOut(props) {
                                     placeholder="Enter Name"
                                     value={name}
                                     onChange={e=>setName(e.target.value)}
-                                    className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded"
+                                    className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded focus:tw-outline-none focus:tw-ring focus:tw-border-blue-300"
                                 >
                                 </input>
                             </div>
@@ -105,7 +128,7 @@ export default function CheckOut(props) {
                                     placeholder="Enter Phone"
                                     value={phone}
                                     onChange={(e)=>setPhone(e.target.value)}
-                                    className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded tw-mt1"
+                                    className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded focus:tw-outline-none focus:tw-ring focus:tw-border-blue-300"
                                 >
                                 </input>
                             </div>
@@ -117,7 +140,7 @@ export default function CheckOut(props) {
                                     placeholder="Enter Email"
                                     value={email}
                                     onChange={(e)=>setEmail(e.target.value)}
-                                    className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded tw-mt1"
+                                    className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded focus:tw-outline-none focus:tw-ring focus:tw-border-blue-300"
                                 >
                                 </input>
                             </div>
@@ -129,7 +152,7 @@ export default function CheckOut(props) {
                                     placeholder="Enter Address"
                                     value={address}
                                     onChange={(e)=>setAddress(e.target.value)}
-                                    className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded tw-mt1"
+                                    className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded focus:tw-outline-none focus:tw-ring focus:tw-border-blue-300"
                                     required
                                 >
                                 </input>
@@ -144,7 +167,7 @@ export default function CheckOut(props) {
                                         placeholder="Enter city"
                                         value={city}
                                         onChange={(e)=>setCity(e.target.value)}
-                                        className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded tw-mt1"
+                                        className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded focus:tw-outline-none focus:tw-ring focus:tw-border-blue-300"
                                     >
                                     </input>
                                 </div>
@@ -157,7 +180,7 @@ export default function CheckOut(props) {
                                         placeholder="Enter postal code"
                                         value={postalcode}
                                         onChange={(e)=>setPostalcode(e.target.value)}
-                                        className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded tw-mt1"
+                                        className="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded focus:tw-outline-none focus:tw-ring focus:tw-border-blue-300"
                                     >
                                     </input>
                                 </div>

@@ -95,6 +95,33 @@ query($slug: String!){
     }
 }
 `
+export const LOAD_FEATURED_PRODUCTS = gql`
+ query($featured: Boolean!){
+    productsByFeatured(featured: $featured){
+        id
+        title
+        price
+        slug
+        sku
+        featured
+        description
+        colors{
+            id
+            color
+        }
+        sizes{
+            id
+            size
+        }
+        images{
+            id
+            image
+            is_default
+        }
+    }
+ }
+`
+
 export const LOAD_ORDER = gql`
 query($id: ID!){
     order(id: $id){

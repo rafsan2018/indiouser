@@ -38,37 +38,37 @@ export default function PlaceOrder() {
                             <div>
                                 <div className='tw-flex xl:tw-flex-row xs:tw-flex-col p-5 xl:tw-space-x-10 xs:tw-space-x-0 xs:tw-space-y-2 xl:tw-space-y-0' key={items.id}>
                                     <div className="tw-flex xl:tw-flex-col xs:tw-flex-row tw-space-x-2">
-                                        <h2 className="tw-text-xl tw-text-green-500 tw-font-semibold">Product Photo</h2>
+                                        <h2 className="tw-text-sm tw-text-green-500 tw-font-semibold">Product Photo</h2>
                                         <hr></hr>
 
                                         <img src={'http://182.160.118.196:82/' + items.image} alt={items.image} className="md:tw-h-20 md:tw-w-20 xs:tw-h-20 xs:tw-w-20 xl:tw-mt-2 xs:tw-mt-0"></img>
 
                                     </div>
                                     <div>
-                                        <h2 className="tw-text-xl tw-text-green-500 tw-font-semibold">Product Details</h2>
+                                        <h2 className="tw-text-sm tw-text-green-500 tw-font-semibold">Product Details</h2>
                                         <hr></hr>
                                         <div className="tw-space-y-5 tw-pt-2">
-                                            <h1 className="tw-text-md tw-text-green-500 tw-font-bold tw-uppercase ">Name: {items.title}</h1>
-                                            <h1 className="tw-text-sm  tw-text-green-500 tw-font-bold tw-uppercase">Color: {items.color}</h1>
-                                            <h1 className="tw-text-sm  tw-text-green-500 tw-font-bold tw-uppercase">Size: {items.size}</h1>
+                                            <h1 className="tw-text-xs tw-text-green-500 tw-font-semibold tw-uppercase ">Name: {items.title}</h1>
+                                            <h1 className="tw-text-xs  tw-text-green-500 tw-font-semibold tw-uppercase">Color: {items.color}</h1>
+                                            <h1 className="tw-text-xs  tw-text-green-500 tw-font-semibold tw-uppercase">Size: {items.size}</h1>
                                         </div>
                                     </div>
-                                    <div className="tw-flex xl:tw-flex-col xs:tw-flex-row tw-text-green-500 tw-font-bold tw-uppercase tw-pt-2">
-                                        <h2 className="">Quantity</h2>
+                                    <div className="tw-flex xl:tw-flex-col xs:tw-flex-row tw-text-green-500 tw-uppercase">
+                                        <h2 className="tw-text-xs tw-text-green-500 tw-font-semibold tw-pt-1">Quantity</h2>
                                         <hr></hr>
                                         <div className="tw-flex tw-flex-row xl:tw-mt-4 xs:tw-mt-0 ">
-                                            <span className="tw-border-2 tw-border-green-500 tw-px-4">{items.qty}</span>
+                                            <span className="tw-border-2 tw-border-green-500 tw-px-4 tw-text-xs tw-font-semibold">{items.qty}</span>
                                         </div>
                                     </div>
-                                    <div className="tw-flex xl:tw-flex-col xs:tw-flex-row tw-space-x-2 tw-text-green-500 tw-font-bold tw-uppercase tw-text-md tw-pt-2">
-                                        <h2 className="">Price</h2>
+                                    <div className="tw-flex xl:tw-flex-col xs:tw-flex-row tw-space-x-2 tw-text-green-500 tw-font-semibold tw-uppercase tw-text-sm">
+                                        <h2 className="tw-text-xs tw-text-green-500 tw-font-semibold tw-pt-1">Price</h2>
                                         <hr></hr>
                                         <p className="xl:tw-mt-4 xs:tw--mt-0.5">
                                             RM {items.price.toFixed(2)}
                                         </p>
                                     </div>
-                                    <div className="tw-flex xl:tw-flex-col xs:tw-flex-row tw-space-x-2 tw-text-green-500 tw-font-bold tw-uppercase tw-text-md tw-pt-2">
-                                        <h2 className="">Total</h2>
+                                    <div className="tw-flex xl:tw-flex-col xs:tw-flex-row tw-space-x-2 tw-text-green-500 tw-font-semibold tw-uppercase tw-text-sm">
+                                        <h2 className="tw-text-xs tw-text-green-500 tw-font-semibold tw-pt-1">Total</h2>
                                         <hr></hr>
                                         <p className="xl:tw-mt-4 xs:tw--mt-0.5">
                                             RM {(items.price * items.qty).toFixed(2)}
@@ -83,12 +83,12 @@ export default function PlaceOrder() {
                     </div>
 
                     <div className="tw-rounded-lg tw-border-2 tw-border-green-500 tw-shadow-md hover:tw-opacity-75 tw-px-5 tw-space-y-5 tw-mx-5">
-                        <h1 className="tw-text-center tw-text-2xl tw-text-green-500 tw-font-bold">Shipping Information</h1>
-                        <h1 className="tw-text-xl tw-font-bold">Name: {data && data.order.shipping.name}</h1>
-                        <h2 className="tw-text-xl tw-font-bold"> Phone: {data && data.order.shipping.phone}</h2>
-                        <h2 className="tw-text-xl tw-font-bold">Addrees: {data && data.order.shipping.address}</h2>
-                        <h2 className="tw-text-xl tw-font-bold">City: {data && data.order.shipping.city}</h2>
-                        <h2 className="tw-text-xl tw-font-bold">State: {data && data.order.shipping.state}</h2>
+                        <h1 className="tw-text-center tw-text-xl tw-text-green-500 tw-font-bold">Shipping Information</h1>
+                        <h1 className="tw-text-sm tw-font-bold">Name: {data && data.order.shipping.name}</h1>
+                        <h2 className="tw-text-sm tw-font-bold"> Phone: {data && data.order.shipping.phone}</h2>
+                        <h2 className="tw-text-sm tw-font-bold">Addrees: {data && data.order.shipping.address}</h2>
+                        <h2 className="tw-text-sm tw-font-bold">City: {data && data.order.shipping.city}</h2>
+                        <h2 className="tw-text-sm tw-font-bold">State: {data && data.order.shipping.state}</h2>
                     </div>
                 </div>
 
@@ -127,9 +127,9 @@ export default function PlaceOrder() {
             <input type="hidden" name="amount" value ={data && (data.order.orderDetails.reduce((a, b) => a + ((b['price']) || 0), 0) + shippingPrice) * 100}/>
             <input type="hidden" name="reference_1_label" value=""/>
             <input type="hidden" name="reference_1" value="7"/>
-            <input type="hidden" name="reference_2_label" value=""/>
+            <input type="hidden" name="reference_2_label" value={`Quantity:${data && (data.order.orderDetails.reduce((a, b) => a + ((b['qty']) || 0), 0)) }`}/>
             <input type="hidden" name="reference_2" value="7"/>
-            <input type="hidden" name="description" value ="apa2"/>
+            <input type="hidden" name="description" value ={`Products:${data && (data.order.orderDetails.reduce((a, b) => a + ((b['title,']) || 0), 0)) }`}/>
             <input type="hidden" name="collection_id" value ={data && data.order.id}/>
             <input type="submit" value="payment" className="tw-mt-10 tw-text-xl tw-leading-10 tw-bg-green-500 tw-text-white tw-uppercase tw-rounded-lg tw-border-green-500 tw-px-5 tw-py-2 tw-font-bold focus:tw-outline-none"/>
         </form>

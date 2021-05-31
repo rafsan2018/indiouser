@@ -151,12 +151,7 @@ export default function ProductDetailsPage(props) {
                         <SiWhatsapp size={20} className="tw-text-green-500"></SiWhatsapp>
                         <SiMessenger size={20} className="tw-text-green-500"></SiMessenger>
                     </div>
-                    <div className="tw-flex tw-flex-row tw-mt-10 tw-gap-x-4 tw-w-full">
-                        {/* <button className="tw-border-2 tw-bg-green-500 tw-rounded tw-border-green-500 focus:tw-outline-none md:tw-px-3 md:tw-py-1  md:tw-text-xl xs:tw-text-ex tw-font-extrabold">Buy Now</button> */}
-                         <button onClick={()=>shoppingCart(product)} className="tw-border-2 tw-bg-green-200 tw-rounded tw-border-green-500 focus:tw-outline-none md:tw-px-3 xs:tw-px-1 tw-py-1 md:tw-text-xl xs:tw-text-sm tw-font-extrabold">
-                             Add To Cart
-                             </button>
-                    </div>
+
 
                     {/* <span className="tw-text-black">{msg}</span> */}
                     
@@ -226,6 +221,14 @@ export default function ProductDetailsPage(props) {
                                 +
                         </button>
                     </div>
+
+                    <div className="tw-flex tw-flex-row tw-mt-10 tw-gap-x-4 tw-w-full">
+                        {/* <button className="tw-border-2 tw-bg-green-500 tw-rounded tw-border-green-500 focus:tw-outline-none md:tw-px-3 md:tw-py-1  md:tw-text-xl xs:tw-text-ex tw-font-extrabold">Buy Now</button> */}
+                         <button onClick={()=>shoppingCart(product)} className="tw-border-2 tw-bg-green-200 tw-rounded tw-border-green-500 focus:tw-outline-none md:tw-px-3 xs:tw-px-1 tw-py-1 md:tw-text-xl xs:tw-text-sm tw-font-extrabold">
+                             Add To Cart
+                             </button>
+                    </div>
+                    
                 </div>
             </div>
              {/* //))} */}

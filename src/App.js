@@ -4,6 +4,8 @@ import { AiOutlinePrinter } from 'react-icons/ai';
 import Footer from '../src/components/footer';
 // import './assets/main.css';
 import Header from '../src/components/header';
+import {useQuery} from '@apollo/client';
+import {LOAD_FEATURED_PRODUCTS} from './GraphQL/Queries';
 import './App.css'
 
 
@@ -16,7 +18,14 @@ function App() {
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   }
+
+  
   //const product=JSON.parse(localStorage.getItem('products'));
+
+  const { loading, data } = useQuery(LOAD_FEATURED_PRODUCTS, {
+    variables: {featured: true },
+  })
+
   const images = [
     "./imagesstatic/001.jpg",
     "./imagesstatic/002.jpg",
@@ -74,11 +83,22 @@ function App() {
          {/* start products put in section */}
           <div className="tw-flex tw-flex-col">
 
-              <div className="tw-grid xl:tw-grid-cols-4 md:tw-grid-cols-3 xs:tw-grid-cols-2 tw-gap-y-5 tw-right-0 md:tw-gap-x-20 xl:tw-gap-x-20 xs:tw-gap-x-5 xl:tw-ml-20 xl:tw-mr-0 xs:tw--mr-28">
+            {!loading && <div className="tw-grid xl:tw-grid-cols-4 md:tw-grid-cols-3 xs:tw-grid-cols-2 tw-gap-y-5 tw-right-0 md:tw-gap-x-20 xl:tw-gap-x-20 xs:tw-gap-x-5 xl:tw-ml-20 xl:tw-mr-0 xs:tw--mr-28">
 
+              {/* {data.productsByFeatured.map(p => (
               <div className="tw-rounded-lg tw-shadow-md tw-border-gray-100 tw-border-2 tw-py-2 hover:tw-opacity-75 tw-cursor-pointer tw-object-cover">
-                <img src="./imagesstatic/image-removebg-preview (3).png" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
-                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold tw-mt-5">Keep Claim</h1>
+                {p.images[0] && <img src={'http://182.160.118.196:82/'+p.images[0].image} className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />}
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold tw-mt-5">{p.title}</h1>
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold">{p.price}</h1>
+                <div className="tw-grid tw-grid-cols-4 tw-mt-3 tw-font-semibold sm:tw-px-24 lg:tw-px-28 xl:tw-px-14 2xl:tw-px-24 md:tw-px-28  lg:tw-px-10 tw-px-5 tw-transform tw-scale-100 sm:tw-scale-150">
+                  <input type="radio" name="gender" value={p.color} className="" />
+                </div>
+              </div>
+              ))} */}
+
+              <div className="tw-rounded-lg tw-shadow-md tw-border-gray-100 tw-border-2 tw-py-2 hover:tw-opacity-75 tw-cursor-pointer">
+                <img src="./imagesstatic/kids-parkour-urban-t-shirt-black-yellow-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
+                <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold tw-mt-5">Christmas Trees</h1>
                 <h1 className="tw-flex tw-justify-center tw-uppercase tw-text-xs md:tw-text-xl tw-font-semibold">RM20-RM50</h1>
                 <div className="tw-grid tw-grid-cols-4 tw-mt-3 tw-font-semibold sm:tw-px-24 lg:tw-px-28 xl:tw-px-14 2xl:tw-px-24 md:tw-px-28  lg:tw-px-10 tw-px-5 tw-transform tw-scale-100 sm:tw-scale-150">
                   <input type="radio" name="gender" value="male" className="" />
@@ -87,6 +107,7 @@ function App() {
                   <input type="radio" name="gender" value="male" />
                 </div>
               </div>
+              
 
               <div className="tw-rounded-lg tw-shadow-md tw-border-gray-100 tw-border-2 tw-py-2 hover:tw-opacity-75 tw-cursor-pointer">
                 <img src="./imagesstatic/kids-parkour-urban-t-shirt-black-yellow-300x300.jpg" className="tw-display-block tw-w-36 tw-h-32 sm:tw-w-72 sm:tw-h-72" />
@@ -172,7 +193,7 @@ function App() {
                 </div>
               </div>
 
-              </div>
+            </div>}
 
           </div>
       {/* end product list */}
